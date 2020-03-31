@@ -33,7 +33,7 @@
     "install": "^0.13.0",
     "moment": "^2.24.0",
     "morgan": "^1.9.1",
-    "next": "^9.1.1",
+    "next": "^9.3.2",
     "next-images": "^1.2.0",
     "next-redux-saga": "^4.1.2",
     "next-redux-wrapper": "^4.0.1",
