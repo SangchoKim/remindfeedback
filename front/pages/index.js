@@ -10,27 +10,38 @@ const { Text } = Typography;
 const Home = () => {
   const [percent, setPercent] = useState(0);
 
-  // useEffect(() => {
-  //   const progressbar = setInterval(() => {
-  //     let count = percent + 10;
-  //     if (percent > 100) {
-  //       setPercent(100);
-  //     }
-  //     setPercent(count);
-  //   }, 500);
+  useEffect(() => {
+    const progressbar = setInterval(() => {
+      let count = percent + 10;
+      if (percent > 100) {
+        setPercent(100);
+      }
+      setPercent(count);
+    }, 500);
 
-  //   if (percent === 100) {
-  //     clearInterval(progressbar);
-  //     Router.push("/login");
-  //   }
-  // }, [percent]);
+    if (percent === 100) {
+      clearInterval(progressbar);
+      Router.push("/login");
+    }
+  }, [percent]);
+
+  const gridSize = {
+    first: {
+      xs: 2,
+      sm: 4,
+      md: 6,
+      lg: 8,
+    },
+    second: { xs: 20, sm: 16, md: 12, lg: 8 },
+    third: { xs: 2, sm: 4, md: 6, lg: 8 },
+  };
 
   return (
     <>
       <Layout style={backgroundWhite}>
         <WrapperRow>
-          <Col span={8}></Col>
-          <Col span={8} className="wrapper">
+          <Col {...gridSize.first}></Col>
+          <Col {...gridSize.second} className="wrapper">
             <Col span={24}>
               <img src={logoImg} width="50%" />
             </Col>
@@ -43,7 +54,7 @@ const Home = () => {
               <Progress percent={percent} size="default" status="active" />
             </Col>
           </Col>
-          <Col span={8}></Col>
+          <Col {...gridSize.third}></Col>
         </WrapperRow>
       </Layout>
     </>

@@ -5,24 +5,28 @@ import { default as colors } from "../css/theme/color.json";
 
 const XXS = respondTo.xxs`
 background-color: ${colors["color-danger-transparent-500"]};
+.wrapper > div:nth-child(2){
+  span{font-size: 7vw;}
+}
 `;
 
 const XS = respondTo.xs`
 background-color: ${colors["color-danger-800"]};
 `;
 
+const SM = respondTo.sm`
+background-color: purple;
+`;
+
+const MD = respondTo.md`
+background-color: blue;
+`;
+
+const LG = respondTo.lg`
+background-color: white;
+`;
+
 const WrapperRow = styled(Row)`
-  ${XXS};
-  ${XS};
-  ${respondTo.sm`
-   background-color: purple;
-  `};
-  ${respondTo.md`
-   background-color: blue;
-  `};
-  ${respondTo.lg`
-   background-color: white;
-  `};
   height: 100vh;
   width: 100%;
   display: flex;
@@ -51,6 +55,11 @@ const WrapperRow = styled(Row)`
       margin-top: 20px;
     }
   }
+  ${XXS};
+  ${XS};
+  ${SM};
+  ${MD};
+  ${LG};
 `;
 
 export { WrapperRow };
