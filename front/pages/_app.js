@@ -12,12 +12,14 @@ import rootSaga from "../sagas";
 import AppHeader from "../components/AppHeader";
 import { FEEDBACK_SUB_READ_REQUEST } from "../reducers/feedbackSubject";
 import { FEEDBACK_READ_REQUEST } from "../reducers/feedback";
+import GlobalStyle from "../css/Index";
 
 const RemindFeedback = ({ Component, store, pageProps }) => {
   return (
     <>
       {/* <Container> */}
       <Provider store={store}>
+        <GlobalStyle />
         <AppHeader />
         <Component {...pageProps} />
       </Provider>
@@ -28,10 +30,10 @@ const RemindFeedback = ({ Component, store, pageProps }) => {
 
 RemindFeedback.propTypes = {
   Component: PropTypes.elementType.isRequired,
-  store: PropTypes.object.isRequired
+  store: PropTypes.object.isRequired,
 };
 
-RemindFeedback.getInitialProps = async context => {
+RemindFeedback.getInitialProps = async (context) => {
   const { ctx, Component } = context;
   let pageProps = {};
   const { feedbackMode } = ctx.store.getState();
@@ -62,7 +64,7 @@ const configureStore = (initialState, options) => {
           !options.isServer &&
             typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== "undefined"
             ? window.__REDUX_DEVTOOLS_EXTENSION__()
-            : f => f
+            : (f) => f
         );
   const store = createStore(reducer, initialState, enhancer);
   store.sagaTask = sagaMiddleware.run(rootSaga);

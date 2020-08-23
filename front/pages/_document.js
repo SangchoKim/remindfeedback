@@ -2,12 +2,31 @@ import React from "react";
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
 import Document, { Main, NextScript } from "next/document";
-// import GlobalStyle from '../css/Index'
+import { ServerStyleSheet } from "styled-components";
 
 class MyDocument extends Document {
-  static getInitialProps(context) {
-    const page = context.renderPage(App => props => <App {...props} />);
-    return { ...page, helmet: Helmet.renderStatic() };
+  static async getInitialProps(context) {
+    const sheet = new ServerStyleSheet();
+    try {
+      context.renderPage((App) => (props) =>
+        sheet.collectStyles(<App {...props} />)
+      );
+
+      const initialProps = await Document.getInitialProps(context);
+
+      return {
+        ...initialProps,
+        helmet: Helmet.renderStatic(),
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      };
+    } finally {
+      sheet.seal();
+    }
   }
 
   render() {
@@ -19,8 +38,7 @@ class MyDocument extends Document {
       <html {...htmlAttrs}>
         <head>
           {this.props.styleTags}
-          {Object.values(helmet).map(el => el.toComponent())}
-          {/* <GlobalStyle/> */}
+          {Object.values(helmet).map((el) => el.toComponent())}
         </head>
         <body {...bodyAttrs}>
           <Main />
@@ -35,7 +53,7 @@ class MyDocument extends Document {
 }
 
 MyDocument.propTypes = {
-  helmet: PropTypes.object.isRequired
+  helmet: PropTypes.object.isRequired,
 };
 
 export default MyDocument;
