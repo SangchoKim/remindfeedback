@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import Icon from "@ant-design/icons";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Form, Input, Button, Checkbox, Typography } from "antd";
 import { layoutCenter, fontSize } from "../css/Common";
@@ -243,9 +243,7 @@ const login = () => {
             </label>
             <Form.Item>
               <Input
-                prefix={
-                  <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
-                }
+                prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
                 placeholder="Email"
                 value={email}
                 onChange={handleEmail}
@@ -257,9 +255,7 @@ const login = () => {
             </label>
             <Form.Item>
               <Input
-                prefix={
-                  <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
-                }
+                prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
                 type="password"
                 placeholder="Password"
                 value={password}
