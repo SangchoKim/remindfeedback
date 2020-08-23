@@ -3,28 +3,27 @@ const webpack = require("webpack");
 const CompressionPlugin = require("compression-webpack-plugin");
 require("dotenv").config();
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true"
+  enabled: process.env.ANALYZE === "true",
 });
 
 module.exports = withImages({
   webpack(config, option) {
     return config;
-  }
+  },
 });
 
 module.exports = withBundleAnalyzer(
   withImages({
     env: {
-      PASSWORD: process.env.REACT_APP_PASSWORD
+      PASSWORD: process.env.REACT_APP_PASSWORD,
     },
     distDir: ".next",
     webpack(config, { isServer }) {
-      
       const prod = process.env.NODE_ENV === "production";
 
       const plugins = [
         ...config.plugins,
-        new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /^\.\/ko$/)
+        new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /^\.\/ko$/),
       ];
 
       if (prod) {
@@ -41,12 +40,12 @@ module.exports = withBundleAnalyzer(
             {
               loader: "webpack-ant-icon-loader",
               enforce: "pre",
-              include: [require.resolve("@ant-design/icons/lib/dist")]
-            }
-          ]
+              include: [require.resolve("@ant-design/icons")],
+            },
+          ],
         },
-        plugins
+        plugins,
       };
-    }
+    },
   })
 );
