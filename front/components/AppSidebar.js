@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Menu, Icon, Button, Row, Switch, Col, Tooltip } from "antd";
+import Icon from "@ant-design/icons";
+import { Menu, Button, Row, Switch, Col, Tooltip } from "antd";
 import AddFeedback from "../container/addFeedback";
 import Link from "next/link";
 import { FEEDBACK_MODE } from "../reducers/feedbackMode";
 import {
   FEEDBACK_CHANGE_MODE,
   FEEDBACK_ADD_REQUEST,
-  MOVE_TO_HOME
+  MOVE_TO_HOME,
 } from "../reducers/feedback";
 import { FEEDBACK_SUB_READ_REQUEST } from "../reducers/feedbackSubject";
 import { FRIENDS_MAIN_READ_REQUEST } from "../reducers/friends";
@@ -16,18 +17,20 @@ const { SubMenu } = Menu;
 
 const newFeedBack = {
   fontSize: 17,
-  fontWeight: "bold"
+  fontWeight: "bold",
 };
 
 const Sidebar = {
   margin: 7,
-  padding: 5
+  padding: 5,
 };
 
 const AppSidebar = () => {
   const dispatch = useDispatch();
-  const { isLoadedFriends } = useSelector(state => state.friends);
-  const { isLoadedFeedback, switchMode } = useSelector(state => state.feedback);
+  const { isLoadedFriends } = useSelector((state) => state.friends);
+  const { isLoadedFeedback, switchMode } = useSelector(
+    (state) => state.feedback
+  );
   const [visible, setVisible] = useState();
   const [changeTheme, setChangeTheme] = useState(false);
   const [check, setCheck] = useState(false);
@@ -40,26 +43,26 @@ const AppSidebar = () => {
 
   const showModal = () => {
     dispatch({
-      type: FEEDBACK_SUB_READ_REQUEST
+      type: FEEDBACK_SUB_READ_REQUEST,
     });
     dispatch({
-      type: FRIENDS_MAIN_READ_REQUEST
+      type: FRIENDS_MAIN_READ_REQUEST,
     });
     setVisible(true);
   };
 
-  const handleCancel = e => {
+  const handleCancel = (e) => {
     setVisible(false);
   };
 
-  const handleOk = e => {
+  const handleOk = (e) => {
     setVisible(false);
   };
 
   const moveToSubject = () => {
     dispatch({
       type: MOVE_TO_HOME,
-      data: false
+      data: false,
     });
     Router.push("/subject");
   };
@@ -67,20 +70,20 @@ const AppSidebar = () => {
   const moveToFriends = () => {
     dispatch({
       type: MOVE_TO_HOME,
-      data: false
+      data: false,
     });
     Router.push("/friends");
   };
 
-  const handleSwitch = async value => {
+  const handleSwitch = async (value) => {
     await setChangeTheme(value ? "dark" : "light");
     await dispatch({
       type: FEEDBACK_MODE,
-      data: value
+      data: value,
     });
     await dispatch({
       type: FEEDBACK_CHANGE_MODE,
-      data: value
+      data: value,
     });
   };
 

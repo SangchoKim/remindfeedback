@@ -1,17 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CirclePicker } from "react-color";
-import {
-  Modal,
-  Layout,
-  Form,
-  Input,
-  Icon,
-  Button,
-  Col,
-  Typography,
-  Row
-} from "antd";
+import Icon from "@ant-design/icons";
+import { Modal, Layout, Form, Input, Button, Col, Typography, Row } from "antd";
 import { backgroundWhite, backgroundLightBlue } from "../css/Common";
 import { formItemLayout } from "../css/Subject";
 import { FEEDBACK_SUB_UPDATE_REQUEST } from "../reducers/feedbackSubject";
@@ -23,10 +14,10 @@ const updateSubject = ({
   updateVisible,
   handleUpdateCancel,
   title,
-  category_id
+  category_id,
 }) => {
   const dispath = useDispatch();
-  const { isUpdatingSubject } = useSelector(state => state.feedbackSubject);
+  const { isUpdatingSubject } = useSelector((state) => state.feedbackSubject);
 
   const [category_color, setColor] = useState();
   const [category_title, setTitle] = useState();
@@ -43,20 +34,20 @@ const updateSubject = ({
       data: {
         category_color,
         category_title,
-        category_id
-      }
+        category_id,
+      },
     });
   }, [category_color, category_title]);
 
-  const handleTitle = e => {
+  const handleTitle = (e) => {
     setTitle(e.target.value);
   };
 
-  const handleChangeComplete = color => {
+  const handleChangeComplete = (color) => {
     setColor(color.hex);
   };
 
-  const handleChange = color => {
+  const handleChange = (color) => {
     setColor(color.hex);
   };
 
@@ -69,7 +60,7 @@ const updateSubject = ({
     "#3F51B5",
     "#9C27B0",
     "#FF4081",
-    "#000000"
+    "#000000",
   ];
 
   return (
@@ -102,7 +93,7 @@ const updateSubject = ({
             >
               <strong>주제 수정</strong>
             </Button>
-          </div>
+          </div>,
         ]}
         onCancel={handleUpdateCancel}
         centered={true}

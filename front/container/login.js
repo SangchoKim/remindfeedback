@@ -1,16 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
-
+import Icon from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Row,
-  Col,
-  Form,
-  Icon,
-  Input,
-  Button,
-  Checkbox,
-  Typography
-} from "antd";
+import { Row, Col, Form, Input, Button, Checkbox, Typography } from "antd";
 import { layoutCenter, fontSize } from "../css/Common";
 import {
   loginBtn,
@@ -18,7 +9,7 @@ import {
   loginFacebook,
   loginGoogle,
   loginKakao,
-  shadowBorder
+  shadowBorder,
 } from "../css/Login";
 
 import Link from "next/link";
@@ -26,7 +17,7 @@ import logoImg from "../img/logo1.png";
 import {
   LOG_IN_REQUEST,
   MOVE_TO_SIGNUP,
-  INITALS_STATE
+  INITALS_STATE,
 } from "../reducers/user";
 import { FEEDBACK_READ_REQUEST } from "../reducers/feedback";
 import { FEEDBACK_SUB_READ_REQUEST } from "../reducers/feedbackSubject";
@@ -55,14 +46,14 @@ const login = () => {
     message,
     hasMessage,
     success,
-    isLogout
-  } = useSelector(state => state.user);
-  const { isLoadedFeedback } = useSelector(state => state.feedback);
-  const { isLoadedSubject } = useSelector(state => state.feedbackSubject);
-  const { feedbackMode } = useSelector(state => state.feedbackMode);
+    isLogout,
+  } = useSelector((state) => state.user);
+  const { isLoadedFeedback } = useSelector((state) => state.feedback);
+  const { isLoadedSubject } = useSelector((state) => state.feedbackSubject);
+  const { feedbackMode } = useSelector((state) => state.feedbackMode);
 
   const _onsubmit = useCallback(
-    e => {
+    (e) => {
       e.preventDefault();
 
       const passwords = CryptoJS(password + process.env.PASSWORD).toString();
@@ -71,8 +62,8 @@ const login = () => {
         type: LOG_IN_REQUEST,
         data: {
           email,
-          password: passwords
-        }
+          password: passwords,
+        },
       });
     },
     [email, password]
@@ -82,7 +73,7 @@ const login = () => {
     if (isLogout) {
       window.location.reload(true);
       dispatch({
-        type: MOVE_TO_SIGNUP
+        type: MOVE_TO_SIGNUP,
       });
     }
   }, [isLogout && isLogout]);
@@ -94,18 +85,18 @@ const login = () => {
     if (isLoggedIn && me) {
       dispatch({
         type: INITALS_STATE,
-        data: "isLoggedIn"
+        data: "isLoggedIn",
       });
 
       dispatch({
         type: FEEDBACK_READ_REQUEST,
         data: {
           feedbackModes,
-          lastId
-        }
+          lastId,
+        },
       });
       dispatch({
-        type: FEEDBACK_SUB_READ_REQUEST
+        type: FEEDBACK_SUB_READ_REQUEST,
       });
     }
   }, [isLoggedIn && isLoggedIn]);
@@ -120,7 +111,7 @@ const login = () => {
     if (hasMessage) {
       alert(me.msg);
       dispatch({
-        type: MOVE_TO_SIGNUP
+        type: MOVE_TO_SIGNUP,
       });
     }
   }, [hasMessage && hasMessage]);
@@ -134,29 +125,29 @@ const login = () => {
     }
 
     dispatch({
-      type: MOVE_TO_SIGNUP
+      type: MOVE_TO_SIGNUP,
     });
   }, [message && message]);
 
-  const handlePassword = e => {
+  const handlePassword = (e) => {
     setPassword(e.target.value);
   };
 
-  const handleEmail = e => {
+  const handleEmail = (e) => {
     setEmail(e.target.value);
   };
 
-  const handleSignUp = async e => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     await dispatch({
-      type: MOVE_TO_SIGNUP
+      type: MOVE_TO_SIGNUP,
     });
     await Router.push("/signup");
   };
 
-  const handleFindPw = async e => {
+  const handleFindPw = async (e) => {
     await dispatch({
-      type: MOVE_TO_SIGNUP
+      type: MOVE_TO_SIGNUP,
     });
     setVisible(true);
   };
@@ -182,11 +173,11 @@ const login = () => {
     setCurrent(0);
   };
 
-  const handleSetEmail = e => {
+  const handleSetEmail = (e) => {
     setFirstSubject(e.target.value);
   };
 
-  const handleSubmitEamil = current => {
+  const handleSubmitEamil = (current) => {
     if (!firstSubject) {
       return alert("먼저 해당 내용을 입력해주세요~");
     }
@@ -197,8 +188,8 @@ const login = () => {
         type: UPDATE_PASSWORD_REQUEST,
         data: {
           current,
-          email: firstSubject
-        }
+          email: firstSubject,
+        },
       });
     } else if (current === 2) {
       // 토큰 보내기
@@ -213,8 +204,8 @@ const login = () => {
         data: {
           current,
           token: firstSubject,
-          password: newPasswords
-        }
+          password: newPasswords,
+        },
       });
     } else {
       console.error("에러발생");
@@ -229,7 +220,7 @@ const login = () => {
     setVisiblePaner(false);
   };
 
-  const handleSetNewPassword = e => {
+  const handleSetNewPassword = (e) => {
     setNewPassword(e.target.value);
   };
 
@@ -318,13 +309,13 @@ const login = () => {
                        </Form.Item> */}
           </Form>
           <div>
-            <span style={{ fontSize: "1vw" }}>계정이 없으신가요?</span>
+            <Text style={{ fontSize: "1vw" }}>계정이 없으신가요?</Text>
             <Button
               type="ghost"
               style={{
                 border: "tranparent",
                 borderWidth: 0,
-                backgroundColor: "white"
+                backgroundColor: "white",
               }}
               onClick={handleSignUp}
             >
@@ -338,7 +329,7 @@ const login = () => {
               style={{
                 border: "tranparent",
                 borderWidth: 0,
-                backgroundColor: "white"
+                backgroundColor: "white",
               }}
               onClick={handleFindPw}
             >

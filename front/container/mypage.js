@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Icon from "@ant-design/icons";
 import {
   Row,
   Col,
@@ -7,24 +8,23 @@ import {
   Avatar,
   Empty,
   Typography,
-  Icon,
   Button,
   Timeline,
   Input,
   Popover,
-  Popconfirm
+  Popconfirm,
 } from "antd";
 import AppPhoto from "../container/feedBackPhoto";
 import {
   UPDATE_USER_REQUEST,
-  DELTE_USER_PHOTO_REQUEST
+  DELTE_USER_PHOTO_REQUEST,
 } from "../reducers/user";
 
 const { Text } = Typography;
 
 const mypage = () => {
   const dispatch = useDispatch();
-  const { me, message } = useSelector(state => state.user);
+  const { me, message } = useSelector((state) => state.user);
 
   const [nickname, setNickname] = useState("");
   const [introduction, setIntro] = useState("");
@@ -54,12 +54,12 @@ const mypage = () => {
     dispatch({
       type: DELTE_USER_PHOTO_REQUEST,
       data: {
-        updatefile: true
-      }
+        updatefile: true,
+      },
     });
   };
 
-  const handleData = e => {
+  const handleData = (e) => {
     if (e.target.name === "NICKNAME") {
       setNickname(e.target.value);
     } else if (e.target.name === "INTRO") {
@@ -70,14 +70,14 @@ const mypage = () => {
   };
 
   const updateMypage = useCallback(
-    e => {
+    (e) => {
       e.preventDefault();
       const formData = new FormData();
       formData.append("nickname", nickname);
       formData.append("introduction", introduction);
       dispatch({
         type: UPDATE_USER_REQUEST,
-        data: formData
+        data: formData,
       });
       setPhotoVisible(false);
     },

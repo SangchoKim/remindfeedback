@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { Col, Card, Avatar, Icon, Button, Empty, Popconfirm } from "antd";
+import Icon from "@ant-design/icons";
+import { Col, Card, Avatar, Button, Empty, Popconfirm } from "antd";
 import moment from "moment";
 import {
   FEEDBACK_DELETE_REQUEST,
-  FEEDBACK_UPDATE_REQUEST
+  FEEDBACK_UPDATE_REQUEST,
 } from "../reducers/feedback";
 import { FRIENDS_MAIN_READ_REQUEST } from "../reducers/friends";
 import UpdateFeedback from "../container/addFeedback";
@@ -13,11 +14,11 @@ const { Meta } = Card;
 
 const setFeedbackContents = ({ myFeedback, inProgress, categoryId }) => {
   const dispatch = useDispatch();
-  const { subject } = useSelector(state => state.feedbackSubject);
+  const { subject } = useSelector((state) => state.feedbackSubject);
   const { isDeletingFeedback, isUpdatedFeedback } = useSelector(
-    state => state.feedback
+    (state) => state.feedback
   );
-  const { me } = useSelector(state => state.user);
+  const { me } = useSelector((state) => state.user);
 
   const [feedback_id, setFeedback_id] = useState(0);
   const [feedback_title, setFeedback_title] = useState("");
@@ -150,7 +151,7 @@ const setFeedbackContents = ({ myFeedback, inProgress, categoryId }) => {
     }
   }, [myFeedback && myFeedback]);
 
-  const setColor = val => {
+  const setColor = (val) => {
     const index = subject.findIndex(
       (v, i) => parseInt(v.category_id) === parseInt(val)
     );
@@ -162,7 +163,7 @@ const setFeedbackContents = ({ myFeedback, inProgress, categoryId }) => {
     feedback_id &&
       dispatch({
         type: FEEDBACK_DELETE_REQUEST,
-        feedback_id
+        feedback_id,
       });
   };
 
@@ -174,18 +175,18 @@ const setFeedbackContents = ({ myFeedback, inProgress, categoryId }) => {
     return w.diff(c, "days");
   };
 
-  const handleConfirm = e => {
+  const handleConfirm = (e) => {
     setFeedback_id(e.target.id);
   };
 
-  const showModal = async e => {
+  const showModal = async (e) => {
     e.preventDefault();
     dispatch({
-      type: FRIENDS_MAIN_READ_REQUEST
+      type: FRIENDS_MAIN_READ_REQUEST,
     });
     setFeedback_id(e.target.id);
     const [
-      { adviser_uid, title, createdAt, category, myfeedback }
+      { adviser_uid, title, createdAt, category, myfeedback },
     ] = await myFeedback.filter(
       (v, i) => parseInt(e.target.id) === parseInt(v.id)
     );
@@ -199,11 +200,11 @@ const setFeedbackContents = ({ myFeedback, inProgress, categoryId }) => {
     await setVisible(true);
   };
 
-  const handleCancel = e => {
+  const handleCancel = (e) => {
     setVisible(false);
   };
 
-  const handleOk = e => {
+  const handleOk = (e) => {
     setVisible(false);
   };
 
@@ -223,7 +224,7 @@ const setFeedbackContents = ({ myFeedback, inProgress, categoryId }) => {
                     textAlign: "right",
                     fontWeight: "bold",
                     fontStyle: "italic",
-                    paddingRight: 15
+                    paddingRight: 15,
                   }}
                 >
                   {moment(v.createdAt).format("YYYY MMMM Do")}
@@ -237,7 +238,7 @@ const setFeedbackContents = ({ myFeedback, inProgress, categoryId }) => {
                       textAlign: "right",
                       fontWeight: "bold",
                       fontStyle: "italic",
-                      paddingRight: 15
+                      paddingRight: 15,
                     }}
                   >
                     <Col span={18} />
@@ -247,7 +248,7 @@ const setFeedbackContents = ({ myFeedback, inProgress, categoryId }) => {
                         color: "red",
                         backgroundColor: "white",
                         textAlign: "center",
-                        borderRadius: 30
+                        borderRadius: 30,
                       }}
                     >
                       {v.complete === 1 && "요청중"}
@@ -284,7 +285,7 @@ const setFeedbackContents = ({ myFeedback, inProgress, categoryId }) => {
                     style={{ fontSize: "18px", color: "#08c" }}
                   />
                 </Button>
-              </Popconfirm>
+              </Popconfirm>,
             ]}
           >
             <Link
@@ -327,7 +328,7 @@ const setFeedbackContents = ({ myFeedback, inProgress, categoryId }) => {
                           textAlign: "center",
                           margin: 5,
                           borderRadius: 100,
-                          color: "red"
+                          color: "red",
                         }}
                       >
                         <strong>

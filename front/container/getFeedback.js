@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Icon from "@ant-design/icons";
 import {
   Row,
   Col,
   Card,
   Avatar,
-  Icon,
   message,
   Menu,
   Dropdown,
@@ -13,7 +13,7 @@ import {
   Breadcrumb,
   Typography,
   Tooltip,
-  Empty
+  Empty,
 } from "antd";
 import GetFeedbackContents from "./getFeedbackContents";
 import GetFeedbackCategory from "./getFeedbackCategory";
@@ -43,7 +43,7 @@ const getFeedback = ({ requestedFeedback }) => {
           textAlign: "center",
           marginTop: 15,
           fontStyle: "italic",
-          textShadow: "2px 2px 2px gray"
+          textShadow: "2px 2px 2px gray",
         }}
       >
         <Title level={2}>

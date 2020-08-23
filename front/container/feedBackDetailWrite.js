@@ -1,21 +1,12 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Modal,
-  Layout,
-  Form,
-  Input,
-  Icon,
-  Button,
-  Col,
-  Typography,
-  Row
-} from "antd";
+import Icon from "@ant-design/icons";
+import { Modal, Layout, Form, Input, Button, Col, Typography, Row } from "antd";
 import { backgroundWhite, backgroundLightBlue } from "../css/Common";
 import { formItemLayout } from "../css/FeedbackDetail";
 import {
   FEEDBACK_ITEM_ADD_REQUEST,
-  FEEDBACK_ITEM_UPDATE_REQUEST
+  FEEDBACK_ITEM_UPDATE_REQUEST,
 } from "../reducers/feedback";
 
 const { TextArea } = Input;
@@ -27,10 +18,10 @@ const feedBackDetailWrite = ({
   writeHandleCancel,
   name,
   feedback_id,
-  feedBackItemId
+  feedBackItemId,
 }) => {
   const dispatch = useDispatch();
-  const { feedbackItem } = useSelector(state => state.feedback);
+  const { feedbackItem } = useSelector((state) => state.feedback);
 
   const [board_content, setContents] = useState("");
   const [board_title, setTitle] = useState("");
@@ -65,8 +56,8 @@ const feedBackDetailWrite = ({
           board_content,
           name,
           feedBackItemId,
-          board_title
-        }
+          board_title,
+        },
       });
     } else {
       dispatch({
@@ -75,8 +66,8 @@ const feedBackDetailWrite = ({
           board_content,
           name,
           feedback_id,
-          board_title
-        }
+          board_title,
+        },
       });
     }
     setContents("");
@@ -85,14 +76,14 @@ const feedBackDetailWrite = ({
   }, [board_content, board_title]);
 
   const handleChange = useCallback(
-    e => {
+    (e) => {
       setContents(e.target.value);
     },
     [board_content]
   );
 
   const handleTitle = useCallback(
-    e => {
+    (e) => {
       setTitle(e.target.value);
     },
     [board_title]
@@ -131,7 +122,7 @@ const feedBackDetailWrite = ({
                 <strong>추가</strong>
               )}
             </Button>
-          </div>
+          </div>,
         ]}
         onCancel={writeHandleCancel}
         centered={true}

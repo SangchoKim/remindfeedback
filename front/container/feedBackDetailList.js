@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
+import Icon from "@ant-design/icons";
 import {
   Col,
   Button,
   Breadcrumb,
-  Icon,
   Card,
   Popover,
   Pagination,
   Tooltip,
-  Empty
+  Empty,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
@@ -19,7 +19,7 @@ import AppRecord from "../container/feedBackDetailRecord";
 import ImageContents from "../components/ImagesContents";
 import {
   FEEDBACK_ITEM_COMMENT_REQUEST,
-  FEEDBACK_ITEM_ADD_REQUEST
+  FEEDBACK_ITEM_ADD_REQUEST,
 } from "../reducers/feedback";
 
 const { Group } = Button;
@@ -30,10 +30,10 @@ const feedBackDetailList = ({ feedback_id, handleComment }) => {
     feedbackItem,
     feedback,
     message,
-    isCompleted_req_Feedback
-  } = useSelector(state => state.feedback);
+    isCompleted_req_Feedback,
+  } = useSelector((state) => state.feedback);
 
-  const { feedbackMode } = useSelector(state => state.feedbackMode);
+  const { feedbackMode } = useSelector((state) => state.feedbackMode);
 
   const [name, setName] = useState(false);
   const [adviser_uid, setAdviser_uid] = useState("");
@@ -86,7 +86,7 @@ const feedBackDetailList = ({ feedback_id, handleComment }) => {
           return {
             board_file1: v.board_file1,
             board_file2: v.board_file2,
-            board_file3: v.board_file3
+            board_file3: v.board_file3,
           };
         });
       }
@@ -111,7 +111,7 @@ const feedBackDetailList = ({ feedback_id, handleComment }) => {
     }
   }, [
     (handleComment && handleComment) ||
-      (isCompleted_req_Feedback && isCompleted_req_Feedback)
+      (isCompleted_req_Feedback && isCompleted_req_Feedback),
   ]);
 
   useEffect(() => {
@@ -161,7 +161,7 @@ const feedBackDetailList = ({ feedback_id, handleComment }) => {
     setRecordVisible(false);
   };
 
-  const popUpModal = e => {
+  const popUpModal = (e) => {
     setName(e.target.name);
     setVisible(false);
     if (e.target.name === "TEXT") {
@@ -175,7 +175,7 @@ const feedBackDetailList = ({ feedback_id, handleComment }) => {
     }
   };
 
-  const handleUpdate = e => {
+  const handleUpdate = (e) => {
     setFeedBackItemId(e.target.id);
     const type = feedbackItem.find(
       (v, i) => parseInt(e.target.id) === parseInt(v.id)
@@ -200,18 +200,18 @@ const feedBackDetailList = ({ feedback_id, handleComment }) => {
   const _onMouseLeave = () => {
     setMouseOver(false);
   };
-  const handleList = e => {
+  const handleList = (e) => {
     const board_id = e.target.id;
     const sort = 1;
     dispatch({
       type: FEEDBACK_ITEM_COMMENT_REQUEST,
-      data: { board_id: board_id, sort: sort }
+      data: { board_id: board_id, sort: sort },
     });
     setBoard_id(board_id);
     handleComment(board_id);
   };
 
-  const handleFilter = name => {
+  const handleFilter = (name) => {
     if (feedbackItem.length >= 1) {
       if (name === "all") {
         console.log("all");
@@ -266,7 +266,7 @@ const feedBackDetailList = ({ feedback_id, handleComment }) => {
         border: parseInt(board_id) === parseInt(v.id) && "solid blue 3px",
         borderRadius:
           parseInt(board_id) === parseInt(board_id) && "25px 25px 25px 25px",
-        boxShadow: parseInt(board_id) === parseInt(board_id) && "5px 10px 20px"
+        boxShadow: parseInt(board_id) === parseInt(board_id) && "5px 10px 20px",
       }}
     >
       <ImageContents v={v} />

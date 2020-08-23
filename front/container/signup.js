@@ -1,15 +1,15 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Icon from "@ant-design/icons";
 import {
   Row,
   Col,
   Form,
-  Icon,
   Input,
   Button,
   Checkbox,
   Typography,
-  Alert
+  Alert,
 } from "antd";
 import { layoutCenter } from "../css/Common";
 import { signUpBtn, shadowBorder } from "../css/Signup";
@@ -32,8 +32,8 @@ const signup = () => {
     isSignedUp,
     hasMessage,
     success,
-    message
-  } = useSelector(state => state.user);
+    message,
+  } = useSelector((state) => state.user);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -55,28 +55,28 @@ const signup = () => {
     dispatch({
       type: CHECK_EMAIL_REQUEST,
       data: {
-        email
-      }
+        email,
+      },
     });
   };
 
-  const onChangeSetToken = e => {
+  const onChangeSetToken = (e) => {
     setToken(e.target.value);
   };
-  const onChangeSetEmail = e => {
+  const onChangeSetEmail = (e) => {
     setEmail(e.target.value);
   };
-  const onChangeSetNickName = e => {
+  const onChangeSetNickName = (e) => {
     setNickname(e.target.value);
   };
-  const onChangeSetPassword = e => {
+  const onChangeSetPassword = (e) => {
     setPassword(e.target.value);
   };
-  const onChangeSetRePassword = e => {
+  const onChangeSetRePassword = (e) => {
     setRe_password(e.target.value);
   };
 
-  const showDrawer = id => {
+  const showDrawer = (id) => {
     if (id === 1) {
       setTitle("서비스 이용약관");
       setDescription(id);
@@ -88,7 +88,7 @@ const signup = () => {
     setDrawer(true);
   };
 
-  const onClose = stuats => {
+  const onClose = (stuats) => {
     if (stuats === "firstChecked") {
       setTermError(false);
       setFristTerm(true);
@@ -111,7 +111,7 @@ const signup = () => {
         <div
           style={{
             marginTop: 5,
-            width: "80%"
+            width: "80%",
           }}
         >
           <Input
@@ -127,7 +127,7 @@ const signup = () => {
         <div
           style={{
             marginTop: 5,
-            marginLeft: "2%"
+            marginLeft: "2%",
           }}
         >
           <Button
@@ -137,7 +137,7 @@ const signup = () => {
               borderRadius: 15,
               backgroundColor: "red",
               fontWeight: "bold",
-              color: "#FFFFFF"
+              color: "#FFFFFF",
             }}
           >
             이메일 인증
@@ -242,7 +242,7 @@ const signup = () => {
     if (!hasMessage && isSignedUp) {
       alert(me.msg);
       dispatch({
-        type: MOVE_TO_SIGNUP
+        type: MOVE_TO_SIGNUP,
       });
       Router.push("/login");
     }
@@ -258,23 +258,23 @@ const signup = () => {
       setFristTerm(false);
       setSecondTerm(false);
       dispatch({
-        type: MOVE_TO_SIGNUP
+        type: MOVE_TO_SIGNUP,
       });
     }
   }, [hasMessage && hasMessage]);
 
-  const isEmail = email => {
+  const isEmail = (email) => {
     const regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
     return regExp.test(email);
   };
 
-  const isPassword = password => {
+  const isPassword = (password) => {
     const regExp = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
     return regExp.test(password);
   };
 
   const _onSubmit = useCallback(
-    e => {
+    (e) => {
       e.preventDefault();
       console.log(token, email);
       if (!token) {
@@ -317,8 +317,8 @@ const signup = () => {
           email,
           password: passwords,
           nickname,
-          token
-        }
+          token,
+        },
       });
     },
     [email, password, nickname, firstTerm, re_password, token, secondTerm]
@@ -353,7 +353,7 @@ const signup = () => {
                 marginTop: 15,
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: ""
+                justifyContent: "",
               }}
             >
               <Checkbox
@@ -367,7 +367,7 @@ const signup = () => {
                 type="dashed"
                 onClick={showDrawer.bind(this, 1)}
                 style={{
-                  fontWeight: "bold"
+                  fontWeight: "bold",
                 }}
               >
                 자세히보기 <Icon type="right" />
@@ -379,7 +379,7 @@ const signup = () => {
                 marginTop: 15,
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: ""
+                justifyContent: "",
               }}
             >
               <Checkbox
@@ -393,7 +393,7 @@ const signup = () => {
                 type="dashed"
                 onClick={showDrawer.bind(this, 2)}
                 style={{
-                  fontWeight: "bold"
+                  fontWeight: "bold",
                 }}
               >
                 자세히보기 <Icon type="right" />

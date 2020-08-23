@@ -1,16 +1,16 @@
 import React, { useCallback, useState, useEffect } from "react";
+import Icon from "@ant-design/icons";
 import {
   Modal,
   Layout,
   Card,
   Empty,
-  Icon,
   Button,
   Col,
   Typography,
   Row,
   Avatar,
-  Statistic
+  Statistic,
 } from "antd";
 import { layoutProfile, layoutCenter } from "../css/Friends";
 import { FRIENDS_PROFILE_READ_REQUEST } from "../reducers/friends";
@@ -26,7 +26,7 @@ const ProfileFriends = ({
   profileName,
   profileIntro,
   profileEmail,
-  profilePortrait
+  profilePortrait,
 }) => {
   const [photoVisible, setPhotoVisible] = useState(false);
 
@@ -71,7 +71,7 @@ const ProfileFriends = ({
             >
               <strong>닫기</strong>
             </Button>
-          </div>
+          </div>,
         ]}
       >
         <Content>

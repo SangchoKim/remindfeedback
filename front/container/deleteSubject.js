@@ -1,19 +1,20 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Popover, Icon, Button, Popconfirm } from "antd";
+import Icon from "@ant-design/icons";
+import { Popover, Button, Popconfirm } from "antd";
 import { FEEDBACK_SUB_DELETE_REQUEST } from "../reducers/feedbackSubject";
 
 const deleteSubject = ({
   update,
   PopupUpdateSubject,
   popOverVisible,
-  handleVisible
+  handleVisible,
 }) => {
   const dispatch = useDispatch();
 
   const [id, setId] = useState("");
 
-  const handleDelete = e => {
+  const handleDelete = (e) => {
     e.preventDefault();
     console.log(e.target.id);
     setId(e.target.id);
@@ -22,11 +23,11 @@ const deleteSubject = ({
   const handleConfirm = useCallback(() => {
     dispatch({
       type: FEEDBACK_SUB_DELETE_REQUEST,
-      id
+      id,
     });
   }, [id]);
 
-  return update.map(update => {
+  return update.map((update) => {
     return (
       <Popover
         // onVisibleChange={handleVisible}

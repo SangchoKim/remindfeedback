@@ -1,16 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Modal,
-  Layout,
-  Form,
-  Input,
-  Icon,
-  Button,
-  Col,
-  Typography,
-  Row
-} from "antd";
+import Icon from "@ant-design/icons";
+import { Modal, Layout, Form, Input, Button, Col, Typography, Row } from "antd";
 import { backgroundWhite, backgroundLightBlue } from "../css/Common";
 import { formItemLayout } from "../css/Subject";
 
@@ -50,7 +41,7 @@ const feedBackDetailRecord = ({ recordVisible, recordHandleCancel, name }) => {
             >
               <strong>추가</strong>
             </Button>
-          </div>
+          </div>,
         ]}
         onCancel={recordHandleCancel}
         centered={true}

@@ -13,6 +13,15 @@ const backgroundWhite = {
   background: "white",
 };
 
+const layoutCenter = {
+  height: "100vh",
+  width: "auto",
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "center",
+  alignItems: "center",
+};
+
 const backgroundLightBlue = {
   background: "#0B4E92",
 };
@@ -22,4 +31,11 @@ const fontSize = {
   color: "#000000",
 };
 
-export { layout, layouts, backgroundWhite, backgroundLightBlue, fontSize };
+export {
+  layout,
+  layouts,
+  backgroundWhite,
+  backgroundLightBlue,
+  fontSize,
+  layoutCenter,
+};

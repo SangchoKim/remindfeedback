@@ -1,17 +1,8 @@
 import React, { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactPlayer from "react-player";
-import {
-  Modal,
-  Layout,
-  Form,
-  Input,
-  Icon,
-  Button,
-  Col,
-  Typography,
-  Row
-} from "antd";
+import Icon from "@ant-design/icons";
+import { Modal, Layout, Form, Input, Button, Col, Typography, Row } from "antd";
 import { backgroundWhite, backgroundLightBlue } from "../css/Common";
 import { FEEDBACK_ITEM_ADD_REQUEST } from "../reducers/feedback";
 
@@ -26,7 +17,7 @@ const feedBackDetailVideo = ({ videoVisible, videoHandleCancel, name }) => {
   const [isplay, setIsPlay] = useState(false);
   const [title, setTitle] = useState("");
 
-  const handlePreviewFile = async e => {
+  const handlePreviewFile = async (e) => {
     const file = e.target.files[0];
     console.log(file);
     await setVideoFile(URL.createObjectURL(file));
@@ -37,7 +28,7 @@ const feedBackDetailVideo = ({ videoVisible, videoHandleCancel, name }) => {
     setIsPlay(!isplay);
   };
 
-  const handleTitle = e => {
+  const handleTitle = (e) => {
     setTitle(e.target.value);
   };
 
@@ -46,8 +37,8 @@ const feedBackDetailVideo = ({ videoVisible, videoHandleCancel, name }) => {
       type: FEEDBACK_ITEM_ADD_REQUEST,
       data: {
         title,
-        name
-      }
+        name,
+      },
     });
   }, []);
 
@@ -80,7 +71,7 @@ const feedBackDetailVideo = ({ videoVisible, videoHandleCancel, name }) => {
             >
               <strong>추가</strong>
             </Button>
-          </div>
+          </div>,
         ]}
         onCancel={videoHandleCancel}
         centered={true}

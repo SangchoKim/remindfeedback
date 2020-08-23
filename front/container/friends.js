@@ -1,17 +1,17 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Icon from "@ant-design/icons";
 import {
   Row,
   Col,
   Input,
-  Icon,
   Button,
   Card,
   Avatar,
   Popover,
   Popconfirm,
   Empty,
-  AutoComplete
+  AutoComplete,
 } from "antd";
 import AddFriends from "../container/addFriends";
 import RequestFriends from "../container/requestFriends";
@@ -25,7 +25,7 @@ import {
   FRIENDS_RQ_READ_REQUEST,
   FRIENDS_MAIN_READ_REQUEST,
   FRIENDS_SEARCH_LOCAL,
-  FRIENDS_ARRANGE_DATE
+  FRIENDS_ARRANGE_DATE,
 } from "../reducers/friends";
 
 const ButtonGroup = Button.Group;
@@ -39,8 +39,8 @@ const Friends = () => {
     message,
     Add_Modal_isLoadingFriends,
     RQ_Modal_isLoadingFriends,
-    RQ_Modal_isAddedFriends
-  } = useSelector(state => state.friends);
+    RQ_Modal_isAddedFriends,
+  } = useSelector((state) => state.friends);
 
   const [addVisible, setAddVisible] = useState(false);
   const [requestVisible, setRequestVisible] = useState(false);
@@ -60,7 +60,7 @@ const Friends = () => {
   useEffect(() => {
     if (RQ_Modal_isAddedFriends) {
       dispatch({
-        type: FRIENDS_MAIN_READ_REQUEST
+        type: FRIENDS_MAIN_READ_REQUEST,
       });
     }
   }, [RQ_Modal_isAddedFriends && RQ_Modal_isAddedFriends]);
@@ -80,7 +80,7 @@ const Friends = () => {
   useEffect(() => {
     return () => {
       dispatch({
-        type: FRIENDS_ARRANGE_DATE
+        type: FRIENDS_ARRANGE_DATE,
       });
     };
   }, []);
@@ -92,8 +92,8 @@ const Friends = () => {
       type: FRIENDS_BLOCK_REQUEST,
       data: {
         friend_uid: id,
-        friend_id
-      }
+        friend_id,
+      },
     });
     setBlockFriend(false);
     setBlockCheck(false);
@@ -103,7 +103,7 @@ const Friends = () => {
     setBlockFriend(false);
   };
 
-  const handleBlock = e => {
+  const handleBlock = (e) => {
     setId(e.target.name);
     setBlockFriend(true);
   };
@@ -111,7 +111,7 @@ const Friends = () => {
   // 친구 차단 목록 보기
   const PopupBlockeFriends = async () => {
     await dispatch({
-      type: FRIENDS_BLOCK_READ_REQUEST
+      type: FRIENDS_BLOCK_READ_REQUEST,
     });
     await setBlockedVisible(true);
   };
@@ -127,7 +127,7 @@ const Friends = () => {
   // 친구 추가
   const PopupAddFriends = async () => {
     await dispatch({
-      type: FRIENDS_ADD_READ_REQUEST
+      type: FRIENDS_ADD_READ_REQUEST,
     });
     await setAddVisible(true);
   };
@@ -143,7 +143,7 @@ const Friends = () => {
   // 친구 요청
   const PopupRequestFriends = async () => {
     await dispatch({
-      type: FRIENDS_RQ_READ_REQUEST
+      type: FRIENDS_RQ_READ_REQUEST,
     });
     await setRequestVisible(true);
   };
@@ -157,14 +157,14 @@ const Friends = () => {
   };
 
   // 프로필 보기
-  const PopupProfile = async e => {
+  const PopupProfile = async (e) => {
     const { id } = e.target;
 
     const {
       email,
       nickname,
       portrait,
-      introduction
+      introduction,
     } = await registerdFriends.find((v, i) => id === v.user_uid);
     setProfileName(nickname);
     setProfileEmail(email);
@@ -181,7 +181,7 @@ const Friends = () => {
     setProfileVisible(false);
   };
 
-  const handleBlockCheck = e => {
+  const handleBlockCheck = (e) => {
     setBlockCheck(!blockCheck);
     if (e.target) {
       setUser_uid(e.target.name);
@@ -189,24 +189,24 @@ const Friends = () => {
   };
 
   // 친구 검색
-  const handleSearch = useCallback(v => {
+  const handleSearch = useCallback((v) => {
     setSearchValue(v);
   }, []);
 
-  const handleSelect = v => {
+  const handleSelect = (v) => {
     setSearchValue(v);
   };
 
   const onClickSearch = () => {
     if (!searchValue) {
       dispatch({
-        type: FRIENDS_MAIN_READ_REQUEST
+        type: FRIENDS_MAIN_READ_REQUEST,
       });
     }
 
     dispatch({
       type: FRIENDS_SEARCH_LOCAL,
-      data: searchValue
+      data: searchValue,
     });
   };
 

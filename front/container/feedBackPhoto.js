@@ -1,23 +1,23 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Icon from "@ant-design/icons";
 import {
   Modal,
   Layout,
   Form,
   Input,
-  Icon,
   Button,
   Col,
   Typography,
   Row,
-  Upload
+  Upload,
 } from "antd";
 import { backgroundWhite, backgroundLightBlue } from "../css/Common";
 import { formItemLayout } from "../css/FeedbackDetail";
 import { FRIENDS_PROFILE_ADD_REQUEST } from "../reducers/friends";
 import {
   FEEDBACK_ITEM_ADD_REQUEST,
-  FEEDBACK_ITEM_UPDATE_REQUEST
+  FEEDBACK_ITEM_UPDATE_REQUEST,
 } from "../reducers/feedback";
 import { UPDATE_USER_REQUEST } from "../reducers/user";
 import moment from "moment";
@@ -26,13 +26,13 @@ const { Content } = Layout;
 const { Title } = Typography;
 const { TextArea } = Input;
 
-const getBase64 = file => {
+const getBase64 = (file) => {
   console.log("getBase64");
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
+    reader.onerror = (error) => reject(error);
   });
 };
 
@@ -42,10 +42,10 @@ const feedBackPhoto = ({
   mode,
   name,
   feedback_id,
-  feedBackItemId
+  feedBackItemId,
 }) => {
   const dispatch = useDispatch();
-  const { feedbackItem } = useSelector(state => state.feedback);
+  const { feedbackItem } = useSelector((state) => state.feedback);
 
   const [previewVisible, setpreviewVisible] = useState(false);
   const [previewImage, setpreviewImage] = useState("");
@@ -63,7 +63,7 @@ const feedBackPhoto = ({
         board_title,
         board_file1,
         board_file2,
-        board_file3
+        board_file3,
       } = feedbackItem.find(
         (v, i) => parseInt(feedBackItemId) === parseInt(v.id)
       );
@@ -79,10 +79,10 @@ const feedBackPhoto = ({
               name: v.split("/")[1],
               state: "done",
               url: `https://remindfeedback.s3.ap-northeast-2.amazonaws.com/${v}`,
-              update: false
+              update: false,
             }
           : {
-              uid: "null"
+              uid: "null",
             };
       });
       // updatePhoto = updatePhoto.filter((v,i)=>v.uid!=="null");
@@ -100,10 +100,10 @@ const feedBackPhoto = ({
   }, [
     feedBackItemId && feedBackItemId,
     name && name,
-    feedbackItem && feedbackItem
+    feedbackItem && feedbackItem,
   ]);
 
-  const handlePreview = async file => {
+  const handlePreview = async (file) => {
     console.log("handlePreview", file);
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
@@ -127,9 +127,9 @@ const feedBackPhoto = ({
     setpreviewVisible(false);
   };
 
-  const handlePreviewFile = file => getBase64(file);
+  const handlePreviewFile = (file) => getBase64(file);
 
-  const handleCheck = e => {
+  const handleCheck = (e) => {
     if (mode === UPDATE_USER_REQUEST) {
       setNumber("1");
       setPortrait([e]);
@@ -143,7 +143,7 @@ const feedBackPhoto = ({
   //     setPortrait(file);
   // }
 
-  const handleRemove = e => {
+  const handleRemove = (e) => {
     if (mode === UPDATE_USER_REQUEST) {
       setNumber([]);
     } else {
@@ -167,11 +167,11 @@ const feedBackPhoto = ({
     </Upload>
   );
 
-  const handleTitle = e => {
+  const handleTitle = (e) => {
     setTitle(e.target.value);
   };
 
-  const handleContents = e => {
+  const handleContents = (e) => {
     setContent(e.target.value);
   };
 
@@ -180,8 +180,8 @@ const feedBackPhoto = ({
       dispatch({
         type: FRIENDS_PROFILE_ADD_REQUEST,
         data: {
-          title
-        }
+          title,
+        },
       });
     } else if (mode === UPDATE_USER_REQUEST) {
       if (portrait.length < 1) {
@@ -195,8 +195,8 @@ const feedBackPhoto = ({
         type: UPDATE_USER_REQUEST,
         data: {
           formData,
-          order: "portrait"
-        }
+          order: "portrait",
+        },
       });
       photoHandleCancel();
     } else {
@@ -240,7 +240,7 @@ const feedBackPhoto = ({
             const blob = new Blob([v.name], { type: "image/jpeg" });
             files = new File([blob], v.name, {
               lastModified: new Date(),
-              type: "image/jpeg"
+              type: "image/jpeg",
             });
           } else {
             files = v;
@@ -266,16 +266,16 @@ const feedBackPhoto = ({
           data: {
             formData,
             name,
-            feedBackItemId
-          }
+            feedBackItemId,
+          },
         });
       } else {
         dispatch({
           type: FEEDBACK_ITEM_ADD_REQUEST,
           data: {
             formData,
-            name
-          }
+            name,
+          },
         });
       }
       setContent("");
@@ -318,7 +318,7 @@ const feedBackPhoto = ({
                 <strong>추가</strong>
               )}
             </Button>
-          </div>
+          </div>,
         ]}
         onCancel={photoHandleCancel}
         centered={true}

@@ -1,11 +1,11 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Icon from "@ant-design/icons";
 import {
   Modal,
   Layout,
   Form,
   Input,
-  Icon,
   Button,
   Col,
   Typography,
@@ -13,7 +13,7 @@ import {
   Divider,
   Table,
   Pagination,
-  Empty
+  Empty,
 } from "antd";
 import { formItemLayout } from "../css/Friends";
 import { FRIENDS_RQ_ADD_REQUEST } from "../reducers/friends";
@@ -26,35 +26,35 @@ const { Search } = Input;
 const requestFriends = ({
   requestVisible,
   requestHandleOk,
-  requestHandleCancel
+  requestHandleCancel,
 }) => {
   const dispatch = useDispatch();
-  const { receivedFriends } = useSelector(state => state.friends);
+  const { receivedFriends } = useSelector((state) => state.friends);
 
   const columns = [
     {
       title: "NO",
       dataIndex: "number",
       key: "number",
-      align: "center"
+      align: "center",
     },
     {
       title: "이름",
       dataIndex: "name",
-      key: "name"
+      key: "name",
     },
     {
       title: "이메일",
       key: "email",
       dataIndex: "email",
-      render: email => <a>{email}</a>
+      render: (email) => <a>{email}</a>,
     },
     {
       title: "친구요청",
       dataIndex: "ing",
       key: "ing",
       align: "center",
-      render: ing => (
+      render: (ing) => (
         <>
           <Group>
             <Button type="primary" name="accept" id={ing} onClick={_onsubmit}>
@@ -65,8 +65,8 @@ const requestFriends = ({
             </Button>
           </Group>
         </>
-      )
-    }
+      ),
+    },
   ];
 
   const data =
@@ -77,11 +77,11 @@ const requestFriends = ({
         number: i + 1,
         name: v.nickname,
         email: v.email,
-        ing: v.user_uid
+        ing: v.user_uid,
       };
     });
 
-  const _onsubmit = useCallback(e => {
+  const _onsubmit = useCallback((e) => {
     const check = e.target.name;
     const friend_uid = e.target.id;
     const friend_id = receivedFriends.find((v, i) => v.user_uid === friend_uid)
@@ -94,8 +94,8 @@ const requestFriends = ({
         data: {
           check,
           user_uid: friend_uid,
-          friend_id
-        }
+          friend_id,
+        },
       });
     } else {
       // 거절
@@ -104,8 +104,8 @@ const requestFriends = ({
         data: {
           check,
           friend_uid,
-          friend_id
-        }
+          friend_id,
+        },
       });
     }
   });
@@ -125,7 +125,7 @@ const requestFriends = ({
         bodyStyle={{
           padding: 0,
           borderTop: "#000000 solid 1px",
-          borderBottom: "#000000 solid 1px"
+          borderBottom: "#000000 solid 1px",
         }}
         centered={true}
         footer={[
@@ -147,7 +147,7 @@ const requestFriends = ({
             >
               <strong>닫기</strong>
             </Button>
-          </div>
+          </div>,
         ]}
       >
         <Content>

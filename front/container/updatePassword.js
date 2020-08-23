@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Icon from "@ant-design/icons";
 import {
   Row,
   Col,
@@ -6,10 +7,9 @@ import {
   Avatar,
   Empty,
   Typography,
-  Icon,
   Button,
   Timeline,
-  Input
+  Input,
 } from "antd";
 import { layoutCenter } from "../css/UpdatePassword";
 

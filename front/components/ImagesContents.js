@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
-import { Icon } from "antd";
+import Icon from "@ant-design/icons";
 import ImagesZoom from "./ImagesZoom";
 
 const ImagesContents = ({ v }) => {
@@ -29,7 +29,7 @@ const ImagesContents = ({ v }) => {
                 display: "inline-block",
                 width: "50%",
                 textAlign: "center",
-                verticalAlign: "middle"
+                verticalAlign: "middle",
               }}
             >
               <Icon type="plus" />

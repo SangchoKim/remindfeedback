@@ -3,17 +3,16 @@ import {
   Row,
   Col,
   Breadcrumb,
-  Icon,
   Button,
   Card,
   Avatar,
   Popover,
-  Popconfirm
+  Popconfirm,
 } from "antd";
 
 const font = {
   color: "#FFFFFF",
-  fontSize: 10
+  fontSize: 10,
 };
 
 const AppFooter = () => {

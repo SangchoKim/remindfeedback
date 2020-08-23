@@ -1,16 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import {
-  Modal,
-  Layout,
-  Form,
-  Input,
-  Icon,
-  Button,
-  Col,
-  Typography,
-  Row
-} from "antd";
+import Icon from "@ant-design/icons";
+import { Modal, Layout, Form, Input, Button, Col, Typography, Row } from "antd";
 import { backgroundWhite, backgroundLightBlue } from "../css/Common";
 import { formItemLayout } from "../css/Subject";
 
@@ -56,7 +47,7 @@ const checkPassword = ({ visible, handleCancel, handleOk }) => {
                 </a>
               </Link>
             </Button>
-          </div>
+          </div>,
         ]}
         onCancel={handleCancel}
         centered={true}

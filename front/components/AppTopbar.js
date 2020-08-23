@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Icon from "@ant-design/icons";
 import {
   Menu,
-  Icon,
   Input,
   Typography,
   Dropdown,
@@ -10,7 +10,7 @@ import {
   Row,
   Button,
   Avatar,
-  Popconfirm
+  Popconfirm,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import AppTutorial from "../components/TutorialMain";
@@ -21,7 +21,7 @@ import { FEEDBACK_MODE } from "../reducers/feedbackMode";
 import {
   LOG_OUT_REQUEST,
   FEEDBACK_TUTORIAL_REQUEST,
-  INITALS_STATE
+  INITALS_STATE,
 } from "../reducers/user";
 import Router from "next/router";
 
@@ -31,22 +31,22 @@ const { Search } = Input;
 
 const icon = {
   float: "right",
-  textAlign: "center"
+  textAlign: "center",
 };
 
 const commonStyle = {
   color: "#ffffff",
-  fontSize: 25
+  fontSize: 25,
 };
 
 const AppTopbar = () => {
   const dispatch = useDispatch();
-  const { me, isLogout } = useSelector(state => state.user);
+  const { me, isLogout } = useSelector((state) => state.user);
   const { switchMode, feedback, isLoadedFeedback } = useSelector(
-    state => state.feedback
+    (state) => state.feedback
   );
-  const { subject } = useSelector(state => state.feedbackSubject);
-  const { feedbackMode } = useSelector(state => state.feedbackMode);
+  const { subject } = useSelector((state) => state.feedbackSubject);
+  const { feedbackMode } = useSelector((state) => state.feedbackMode);
   const [visible, setVisible] = useState(false);
   const [alertVisible, setAlertVisible] = useState(false);
   const [firstSubject, setFirstSubject] = useState("첫번째 피드백");
@@ -81,34 +81,34 @@ const AppTopbar = () => {
     setVisible(true);
   };
 
-  const handleCancel = e => {
+  const handleCancel = (e) => {
     e.preventDefault();
     dispatch({
       type: FEEDBACK_TUTORIAL_REQUEST,
-      data: me.email
+      data: me.email,
     });
     setVisible(false);
   };
 
-  const handleSetFirstSubject = e => {
+  const handleSetFirstSubject = (e) => {
     setFirstSubject(e.target.value);
   };
 
-  const handleOk = e => {
+  const handleOk = (e) => {
     setVisible(false);
   };
 
   const handleLogout = () => {
     dispatch({
-      type: LOG_OUT_REQUEST
+      type: LOG_OUT_REQUEST,
     });
     dispatch({
       type: INITALS_STATE,
-      data: "isLoadedSubject"
+      data: "isLoadedSubject",
     });
     dispatch({
       type: INITALS_STATE,
-      data: "isLoadedFeedback"
+      data: "isLoadedFeedback",
     });
   };
 
@@ -135,7 +135,7 @@ const AppTopbar = () => {
     // 추후 업데이트 예정
   };
 
-  const secondHandleFunction = current => {};
+  const secondHandleFunction = (current) => {};
 
   const handleHome = () => {
     const feedbackModes = false;
@@ -145,17 +145,17 @@ const AppTopbar = () => {
       type: FEEDBACK_READ_REQUEST,
       data: {
         lastId,
-        feedbackModes
-      }
+        feedbackModes,
+      },
     });
 
     dispatch({
-      type: FEEDBACK_SUB_READ_REQUEST
+      type: FEEDBACK_SUB_READ_REQUEST,
     });
 
     dispatch({
       type: MOVE_TO_HOME,
-      data: true
+      data: true,
     });
     Router.push("/main");
   };

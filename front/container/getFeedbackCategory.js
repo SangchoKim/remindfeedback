@@ -1,15 +1,15 @@
 import React, { useState } from "react";
+import Icon from "@ant-design/icons";
 import Link from "next/link";
 import {
   Drawer,
   Card,
   Input,
-  Icon,
   Button,
   Col,
   Typography,
   Row,
-  Avatar
+  Avatar,
 } from "antd";
 
 const { Title } = Typography;
@@ -17,7 +17,7 @@ const { Meta } = Card;
 
 const getFeedbackCategory = ({
   reqFeedbackCategoryVisble,
-  reqFeedbackCategoryHandleCancel
+  reqFeedbackCategoryHandleCancel,
 }) => {
   return (
     <>

@@ -1,17 +1,8 @@
 import React, { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CirclePicker } from "react-color";
-import {
-  Modal,
-  Layout,
-  Form,
-  Input,
-  Icon,
-  Button,
-  Col,
-  Typography,
-  Row
-} from "antd";
+import Icon from "@ant-design/icons";
+import { Modal, Layout, Form, Input, Button, Col, Typography, Row } from "antd";
 import { backgroundWhite, backgroundLightBlue } from "../css/Common";
 import { formItemLayout } from "../css/Subject";
 import { FEEDBACK_SUB_ADD_REQUEST } from "../reducers/feedbackSubject";
@@ -21,7 +12,7 @@ const { Title } = Typography;
 
 const addSubject = ({ visible, handleCancel }) => {
   const dispath = useDispatch();
-  const { isAddingSubject } = useSelector(state => state.feedbackSubject);
+  const { isAddingSubject } = useSelector((state) => state.feedbackSubject);
   const [category_color, setColor] = useState();
   const [category_title, setTitle] = useState();
 
@@ -30,20 +21,20 @@ const addSubject = ({ visible, handleCancel }) => {
       type: FEEDBACK_SUB_ADD_REQUEST,
       data: {
         category_color,
-        category_title
-      }
+        category_title,
+      },
     });
   }, [category_color, category_title]);
 
-  const handleTitle = e => {
+  const handleTitle = (e) => {
     setTitle(e.target.value);
   };
 
-  const handleChangeComplete = color => {
+  const handleChangeComplete = (color) => {
     setColor(color.hex);
   };
 
-  const handleColor = color => {
+  const handleColor = (color) => {
     setColor(color.hex);
   };
 
@@ -56,7 +47,7 @@ const addSubject = ({ visible, handleCancel }) => {
     "#3F51B5",
     "#9C27B0",
     "#FF4081",
-    "#000000"
+    "#000000",
   ];
 
   return (
@@ -89,7 +80,7 @@ const addSubject = ({ visible, handleCancel }) => {
             >
               <strong>주제 추가</strong>
             </Button>
-          </div>
+          </div>,
         ]}
         onCancel={handleCancel}
         centered={true}

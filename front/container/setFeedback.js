@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Icon from "@ant-design/icons";
 import {
   Col,
   Card,
-  Icon,
   message,
   Menu,
   Dropdown,
   Button,
   Breadcrumb,
-  Typography
+  Typography,
 } from "antd";
 import { subjectBtn } from "../css/Main";
 import SetFeedbackContents from "./setFeedbackContents";
@@ -18,9 +18,9 @@ const { Title } = Typography;
 
 const setFeedback = ({ myFeedback }) => {
   const dispatch = useDispatch();
-  const { subject } = useSelector(state => state.feedbackSubject);
-  const { feedback } = useSelector(state => state.feedback);
-  const { message, searchedFriends } = useSelector(state => state.friends);
+  const { subject } = useSelector((state) => state.feedbackSubject);
+  const { feedback } = useSelector((state) => state.feedback);
+  const { message, searchedFriends } = useSelector((state) => state.friends);
 
   const [inProgress, setInProgress] = useState(false);
   const [categoryId, setCategoryId] = useState(0);
@@ -38,11 +38,11 @@ const setFeedback = ({ myFeedback }) => {
     }
   }, [message && message]);
 
-  const handleFilter = e => {
+  const handleFilter = (e) => {
     setInProgress(!inProgress);
   };
 
-  const onClickSubject = e => {
+  const onClickSubject = (e) => {
     setCategoryId(e.item.props.id);
     if (e.item.props.id === "0") {
       setCategoryName("주제선택");
@@ -84,7 +84,7 @@ const setFeedback = ({ myFeedback }) => {
           textAlign: "center",
           marginTop: 15,
           fontStyle: "italic",
-          textShadow: "2px 2px 2px gray"
+          textShadow: "2px 2px 2px gray",
         }}
       >
         <Title level={2}>

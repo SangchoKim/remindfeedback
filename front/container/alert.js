@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import Icon from "@ant-design/icons";
 import {
   Popconfirm,
   Card,
   Input,
-  Icon,
   Button,
   Col,
   Typography,
   Row,
-  Avatar
+  Avatar,
 } from "antd";
 import { backgroundWhite, backgroundLightBlue } from "../css/Common";
 import { formItemLayout } from "../css/Subject";

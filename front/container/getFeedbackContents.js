@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { Col, Card, Avatar, Icon, Button, Empty, Popconfirm } from "antd";
+import Icon from "@ant-design/icons";
+import { Col, Card, Avatar, Button, Empty, Popconfirm } from "antd";
 import moment from "moment";
 import {
   FEEDBACK_DELETE_REQUEST,
-  FEEDBACK_UPDATE_REQUEST
+  FEEDBACK_UPDATE_REQUEST,
 } from "../reducers/feedback";
 import UpdateFeedback from "../container/addFeedback";
 const { Meta } = Card;
 
 const getFeedbackContents = ({ myFeedback, inProgress }) => {
   const dispatch = useDispatch();
-  const { subject } = useSelector(state => state.feedbackSubject);
+  const { subject } = useSelector((state) => state.feedbackSubject);
   const { isDeletingFeedback, isUpdatedFeedback } = useSelector(
-    state => state.feedback
+    (state) => state.feedback
   );
-  const { me } = useSelector(state => state.user);
+  const { me } = useSelector((state) => state.user);
 
   const [feedback_id, setFeedback_id] = useState();
   const [feedback_title, setFeedback_title] = useState();
@@ -80,14 +81,14 @@ const getFeedbackContents = ({ myFeedback, inProgress }) => {
     }
   }, []);
 
-  const setCategory = val => {
+  const setCategory = (val) => {
     const index = subject.findIndex(
       (v, i) => parseInt(v.category_id) === parseInt(val)
     );
     return subject[index].category_title;
   };
 
-  const setColor = val => {
+  const setColor = (val) => {
     const index = subject.findIndex(
       (v, i) => parseInt(v.category_id) === parseInt(val)
     );
@@ -98,7 +99,7 @@ const getFeedbackContents = ({ myFeedback, inProgress }) => {
     feedback_id &&
       dispatch({
         type: FEEDBACK_DELETE_REQUEST,
-        feedback_id
+        feedback_id,
       });
   };
 
@@ -108,15 +109,15 @@ const getFeedbackContents = ({ myFeedback, inProgress }) => {
     return w.diff(c, "days");
   };
 
-  const handleConfirm = e => {
+  const handleConfirm = (e) => {
     setFeedback_id(e.target.id);
   };
 
-  const showModal = async e => {
+  const showModal = async (e) => {
     e.preventDefault();
     setFeedback_id(e.target.id);
     const [
-      { adviser_uid, title, createdAt, category }
+      { adviser_uid, title, createdAt, category },
     ] = await myFeedback.filter(
       (v, i) => parseInt(e.target.id) === parseInt(v.id)
     );
@@ -130,11 +131,11 @@ const getFeedbackContents = ({ myFeedback, inProgress }) => {
     await setVisible(true);
   };
 
-  const handleCancel = e => {
+  const handleCancel = (e) => {
     setVisible(false);
   };
 
-  const handleOk = e => {
+  const handleOk = (e) => {
     setVisible(false);
   };
 
@@ -153,7 +154,7 @@ const getFeedbackContents = ({ myFeedback, inProgress }) => {
                   textAlign: "right",
                   fontWeight: "bold",
                   fontStyle: "italic",
-                  paddingRight: 15
+                  paddingRight: 15,
                 }}
               >
                 {moment(v.createdAt).format("YYYY MMMM Do , h:mm:ss a")}
@@ -187,7 +188,7 @@ const getFeedbackContents = ({ myFeedback, inProgress }) => {
                     style={{ fontSize: "18px", color: "#08c" }}
                   />
                 </Button>
-              </Popconfirm>
+              </Popconfirm>,
             ]}
           >
             <Link
@@ -227,7 +228,7 @@ const getFeedbackContents = ({ myFeedback, inProgress }) => {
                           textAlign: "center",
                           margin: 5,
                           borderRadius: 100,
-                          color: "red"
+                          color: "red",
                         }}
                       >
                         <strong>D-</strong>

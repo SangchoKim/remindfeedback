@@ -1,18 +1,18 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Icon from "@ant-design/icons";
 import {
   Col,
   Divider,
   Pagination,
   Button,
-  Icon,
   Comment,
   Tooltip,
   Avatar,
   Input,
   Form,
   Popconfirm,
-  Empty
+  Empty,
 } from "antd";
 import moment from "moment";
 import {
@@ -20,7 +20,7 @@ import {
   FEEDBACK_ITEM_COMPLETE_REQ_REQUEST,
   FEEDBACK_ITEM_COMMENT_ADD_REQUEST,
   FEEDBACK_ITEM_COMMENT_DELETE_REQUEST,
-  FEEDBACK_ITEM_COMMENT_UPDATE_REQUEST
+  FEEDBACK_ITEM_COMMENT_UPDATE_REQUEST,
 } from "../reducers/feedback";
 
 const { TextArea } = Input;
@@ -39,9 +39,9 @@ const feedBackDetailComment = ({ board_ids, feedback_id }) => {
     isCompleted_req_Feedback,
     count,
     isAddedFeedbackComment,
-    isDeletedFeedbackComment
-  } = useSelector(state => state.feedback);
-  const { feedbackMode } = useSelector(state => state.feedbackMode);
+    isDeletedFeedbackComment,
+  } = useSelector((state) => state.feedback);
+  const { feedbackMode } = useSelector((state) => state.feedbackMode);
 
   const [comment_content, setComments] = useState("");
   const [updateComment, setUpdateComment] = useState("");
@@ -60,8 +60,8 @@ const feedBackDetailComment = ({ board_ids, feedback_id }) => {
         type: FEEDBACK_ITEM_COMMENT_REQUEST,
         data: {
           page,
-          board_id
-        }
+          board_id,
+        },
       });
     }
   }, [isDeletedFeedbackComment && isDeletedFeedbackComment]);
@@ -73,8 +73,8 @@ const feedBackDetailComment = ({ board_ids, feedback_id }) => {
         data: {
           page,
           board_id,
-          sort
-        }
+          sort,
+        },
       });
     }
   }, [isAddedFeedbackComment && isAddedFeedbackComment]);
@@ -109,7 +109,7 @@ const feedBackDetailComment = ({ board_ids, feedback_id }) => {
     }
   }, [
     (board_ids && board_ids) ||
-      (isCompleted_req_Feedback && isCompleted_req_Feedback)
+      (isCompleted_req_Feedback && isCompleted_req_Feedback),
   ]);
 
   const handleCommentUpdate = () => {
@@ -119,8 +119,8 @@ const feedBackDetailComment = ({ board_ids, feedback_id }) => {
         type: FEEDBACK_ITEM_COMMENT_UPDATE_REQUEST,
         data: {
           comment_id: commentId,
-          comment_content: updateComment
-        }
+          comment_content: updateComment,
+        },
       });
       setChangeWrite(false);
       setChangeDo(true);
@@ -129,11 +129,11 @@ const feedBackDetailComment = ({ board_ids, feedback_id }) => {
     }
   };
 
-  const handleCommentWirte = e => {
+  const handleCommentWirte = (e) => {
     setUpdateComment(e.target.value);
   };
 
-  const handleCommentId = e => {
+  const handleCommentId = (e) => {
     const { id, name } = e.target;
     if (name === "update") {
       setChangeMode(1);
@@ -152,11 +152,11 @@ const feedBackDetailComment = ({ board_ids, feedback_id }) => {
     setCommentId(id);
   };
 
-  const handleCommentDelete = e => {
+  const handleCommentDelete = (e) => {
     e.preventDefault();
     dispatch({
       type: FEEDBACK_ITEM_COMMENT_DELETE_REQUEST,
-      data: commentId
+      data: commentId,
     });
   };
 
@@ -166,7 +166,7 @@ const feedBackDetailComment = ({ board_ids, feedback_id }) => {
   };
 
   const _onSubmit = useCallback(
-    e => {
+    (e) => {
       e.preventDefault();
       if (!comment_content) {
         return alert("댓글을 써주세요");
@@ -175,8 +175,8 @@ const feedBackDetailComment = ({ board_ids, feedback_id }) => {
         type: FEEDBACK_ITEM_COMMENT_ADD_REQUEST,
         data: {
           comment_content,
-          board_id
-        }
+          board_id,
+        },
       });
       setComments("");
       commentReferenece.current.focus();
@@ -184,32 +184,32 @@ const feedBackDetailComment = ({ board_ids, feedback_id }) => {
     [comment_content]
   );
 
-  const handleComplete = e => {
+  const handleComplete = (e) => {
     const type = e.target.name;
     if (type) {
       dispatch({
         type: FEEDBACK_ITEM_COMPLETE_REQ_REQUEST,
         data: {
           feedback_id,
-          type
-        }
+          type,
+        },
       });
     }
   };
 
-  const handlePage = page => {
+  const handlePage = (page) => {
     setPage(page);
     dispatch({
       type: FEEDBACK_ITEM_COMMENT_REQUEST,
       data: {
         page,
         board_id,
-        sort
-      }
+        sort,
+      },
     });
   };
 
-  const handleFilter = sort => {
+  const handleFilter = (sort) => {
     setSort(sort);
     console.log(sort);
     dispatch({
@@ -217,8 +217,8 @@ const feedBackDetailComment = ({ board_ids, feedback_id }) => {
       data: {
         page,
         board_id,
-        sort
-      }
+        sort,
+      },
     });
   };
 
@@ -277,7 +277,7 @@ const feedBackDetailComment = ({ board_ids, feedback_id }) => {
                 )}
               </Group>
             </Popconfirm>
-          </div>
+          </div>,
         ]}
         key={v.fk_user_uid + v.id}
         name={v.id}
@@ -321,7 +321,7 @@ const feedBackDetailComment = ({ board_ids, feedback_id }) => {
     />
   );
 
-  const handleComments = e => {
+  const handleComments = (e) => {
     setComments(e.target.value);
   };
 
@@ -402,7 +402,7 @@ const feedBackDetailComment = ({ board_ids, feedback_id }) => {
                   style={{
                     width: "100%",
                     background: "gray",
-                    color: "#FFFFFF"
+                    color: "#FFFFFF",
                   }}
                   name="complete"
                   size="large"
@@ -417,7 +417,7 @@ const feedBackDetailComment = ({ board_ids, feedback_id }) => {
                   style={{
                     width: "50%",
                     background: completeValue < 1 ? "gray" : "#0B4E92",
-                    color: "#FFFFFF"
+                    color: "#FFFFFF",
                   }}
                   name="accept"
                   size="large"
@@ -430,7 +430,7 @@ const feedBackDetailComment = ({ board_ids, feedback_id }) => {
                   style={{
                     width: "50%",
                     background: completeValue < 1 ? "gray" : "red",
-                    color: "#FFFFFF"
+                    color: "#FFFFFF",
                   }}
                   name="reject"
                   size="large"
@@ -449,7 +449,7 @@ const feedBackDetailComment = ({ board_ids, feedback_id }) => {
                 style={{
                   width: "100%",
                   background: completeValue >= 1 ? "gray" : "#0B4E92",
-                  color: "#FFFFFF"
+                  color: "#FFFFFF",
                 }}
                 name="request"
                 size="large"

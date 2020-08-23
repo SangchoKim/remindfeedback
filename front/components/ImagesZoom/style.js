@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Icon } from "antd";
+import Icon from "@ant-design/icons";
 
 export const Overlay = styled.div`
   position: fixed;

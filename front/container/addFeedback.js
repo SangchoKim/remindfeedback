@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
+import Icon from "@ant-design/icons";
 import {
   Modal,
   Layout,
@@ -8,7 +9,6 @@ import {
   Input,
   Tooltip,
   Menu,
-  Icon,
   Button,
   Col,
   Typography,
@@ -16,13 +16,13 @@ import {
   Select,
   Comment,
   Avatar,
-  AutoComplete
+  AutoComplete,
 } from "antd";
 import { backgroundWhite, backgroundLightBlue } from "../css/Common";
 import { subjectBtn, feedbackItemLayout, formItemLayout } from "../css/Main";
 import {
   FEEDBACK_ADD_REQUEST,
-  FEEDBACK_UPDATE_REQUEST
+  FEEDBACK_UPDATE_REQUEST,
 } from "../reducers/feedback";
 import { FRIENDS_ADD_SEARCH_REQUEST } from "../reducers/friends";
 
@@ -39,19 +39,19 @@ const addFeedback = ({
   feedback_write_date,
   category_titles,
   order,
-  feedback_id
+  feedback_id,
 }) => {
   const dispatch = useDispatch();
   const {
     isAdddingFeedback,
     isAddedFeedback,
-    isUpdatingFeedback
-  } = useSelector(state => state.feedback);
+    isUpdatingFeedback,
+  } = useSelector((state) => state.feedback);
   const { searchedFriends, registerdFriends } = useSelector(
-    state => state.friends
+    (state) => state.friends
   );
 
-  const { subject } = useSelector(state => state.feedbackSubject);
+  const { subject } = useSelector((state) => state.feedbackSubject);
 
   const [category, setCategory] = useState(0);
   const [title, setTitle] = useState("");
@@ -61,7 +61,7 @@ const addFeedback = ({
   const [emailList, setEmailList] = useState([]);
 
   const _onSubmit = useCallback(
-    async e => {
+    async (e) => {
       e.preventDefault();
       if (!title) {
         return alert("피드백 제목을 입력해 주세요");
@@ -81,8 +81,8 @@ const addFeedback = ({
             title,
             write_date,
             adviser,
-            feedback_id
-          }
+            feedback_id,
+          },
         });
       } else if (FEEDBACK_ADD_REQUEST === order) {
         let advisers = "";
@@ -99,37 +99,37 @@ const addFeedback = ({
             category,
             title,
             write_date,
-            adviser: advisers
-          }
+            adviser: advisers,
+          },
         });
       }
     },
     [category, title, write_date, adviser]
   );
 
-  const handleSubject = value => {
+  const handleSubject = (value) => {
     setCategory(value);
   };
 
-  const handleTitle = e => {
+  const handleTitle = (e) => {
     setTitle(e.target.value);
   };
 
-  const handleData = e => {
+  const handleData = (e) => {
     if (e !== null) {
       setWrite_date(e._d);
     }
   };
 
-  const handleAdvisor = e => {
+  const handleAdvisor = (e) => {
     setAdvisor(e.target.value);
   };
 
-  const handleSearch = v => {
+  const handleSearch = (v) => {
     setAdvisor(v);
   };
 
-  const registerAdvisor = e => {
+  const registerAdvisor = (e) => {
     setAdvisor(e.target.name);
     setCheck(false);
   };
@@ -142,8 +142,8 @@ const addFeedback = ({
     dispatch({
       type: FRIENDS_ADD_SEARCH_REQUEST,
       data: {
-        email
-      }
+        email,
+      },
     });
     setAdvisor("");
     setCheck(true);
@@ -185,7 +185,7 @@ const addFeedback = ({
     feedback_titles,
     category_titles,
     feedback_adviser_uid,
-    feedback_write_date
+    feedback_write_date,
   ]);
 
   const feedback_dateInfo = (
@@ -235,7 +235,7 @@ const addFeedback = ({
                 <strong>피드백 생성</strong>
               )}
             </Button>
-          </div>
+          </div>,
         ]}
         onCancel={handleCancel}
         centered={true}

@@ -1,11 +1,11 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Icon from "@ant-design/icons";
 import {
   Modal,
   Layout,
   Form,
   Input,
-  Icon,
   Button,
   Col,
   Typography,
@@ -16,7 +16,7 @@ import {
   Empty,
   Comment,
   List,
-  Avatar
+  Avatar,
 } from "antd";
 import { formItemLayout } from "../css/Friends";
 import { FRIENDS_ADD_SEARCH_REQUEST } from "../reducers/friends";
@@ -31,8 +31,8 @@ const addFriends = ({ addVisible, addHandleOk, addHandleCancel }) => {
   const {
     addedFriends,
     searchedFriends,
-    Add_Modal_isSearchingFriends
-  } = useSelector(state => state.friends);
+    Add_Modal_isSearchingFriends,
+  } = useSelector((state) => state.friends);
   const [email, setEmail] = useState("");
 
   const columns = [
@@ -40,26 +40,26 @@ const addFriends = ({ addVisible, addHandleOk, addHandleCancel }) => {
       title: "NO",
       dataIndex: "number",
       key: "number",
-      align: "center"
+      align: "center",
     },
     {
       title: "이름",
       dataIndex: "name",
-      key: "name"
+      key: "name",
     },
     {
       title: "이메일",
       key: "email",
       dataIndex: "email",
-      render: email => <a>{email}</a>
+      render: (email) => <a>{email}</a>,
     },
     {
       title: "진행상황",
       dataIndex: "ing",
       key: "ing",
       align: "center",
-      render: ing => <Button type="danger">{ing}</Button>
-    }
+      render: (ing) => <Button type="danger">{ing}</Button>,
+    },
   ];
 
   const data =
@@ -83,7 +83,7 @@ const addFriends = ({ addVisible, addHandleOk, addHandleCancel }) => {
             ? "차단함"
             : v.type === 5
             ? "서로차단"
-            : "에러 발생"
+            : "에러 발생",
       };
     });
 
@@ -96,12 +96,12 @@ const addFriends = ({ addVisible, addHandleOk, addHandleCancel }) => {
       type: FRIENDS_ADD_ADD_REQUEST,
       data: {
         user_uid: searchedFriends.user_uid ? searchedFriends.user_uid : 0,
-        nickname: searchedFriends.nickname
-      }
+        nickname: searchedFriends.nickname,
+      },
     });
   }, [searchedFriends && searchedFriends]);
 
-  const handleSearch = e => {
+  const handleSearch = (e) => {
     setEmail(e.target.value);
   };
 
@@ -113,8 +113,8 @@ const addFriends = ({ addVisible, addHandleOk, addHandleCancel }) => {
     dispatch({
       type: FRIENDS_ADD_SEARCH_REQUEST,
       data: {
-        email
-      }
+        email,
+      },
     });
     setEmail("");
   }, [email && email]);
@@ -124,7 +124,7 @@ const addFriends = ({ addVisible, addHandleOk, addHandleCancel }) => {
       <Button key="request_friends" size="small" onClick={_onsubmit}>
         친구 요청
       </Button>
-    </span>
+    </span>,
   ];
   const author = searchedFriends && <a>{searchedFriends.nickname}</a>;
   const avatar = searchedFriends && (
@@ -159,7 +159,7 @@ const addFriends = ({ addVisible, addHandleOk, addHandleCancel }) => {
         bodyStyle={{
           padding: 0,
           borderTop: "#000000 solid 1px",
-          borderBottom: "#000000 solid 1px"
+          borderBottom: "#000000 solid 1px",
         }}
         onCancel={addHandleCancel}
         centered={true}
@@ -182,7 +182,7 @@ const addFriends = ({ addVisible, addHandleOk, addHandleCancel }) => {
             >
               <strong>친구 요청</strong>
             </Button>
-          </div>
+          </div>,
         ]}
       >
         <Content>
