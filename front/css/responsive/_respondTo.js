@@ -12,3 +12,12 @@ export const respondTo = Object.keys(breakpoints).reduce(
   },
   {}
 );
+
+export const makeGridSize = (xs = 8, sm = 8, md = 8, lg = 8) => {
+  return {
+    xs,
+    sm,
+    md,
+    lg,
+  };
+};

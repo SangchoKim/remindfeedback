@@ -5,9 +5,7 @@ import { default as colors } from "../css/theme/color.json";
 
 const XXS = respondTo.xxs`
 background-color: ${colors["color-danger-transparent-500"]};
-.wrapper > div:nth-child(2){
-  span{font-size: 7vw;}
-}
+
 `;
 
 const XS = respondTo.xs`
@@ -18,9 +16,7 @@ const SM = respondTo.sm`
 background-color: purple;
 `;
 
-const MD = respondTo.md`
-background-color: blue;
-`;
+const MD = respondTo.md`background-color: blue;`;
 
 const LG = respondTo.lg`
 background-color: white;
@@ -35,7 +31,7 @@ const WrapperRow = styled(Row)`
   align-items: center;
   .wrapper {
     border: 1px solid;
-    padding: 50px;
+    padding: 1.2vw;
     box-shadow: 10px 10px 5px grey;
     margin-top: 20px;
     & > div:first-child {
@@ -45,14 +41,16 @@ const WrapperRow = styled(Row)`
     }
     & > div:nth-child(2) {
       text-align: center;
-
       span {
-        font-size: 2vw;
+        font-size: 3.5vw;
         color: #000000;
       }
     }
     & > div:last-child {
       margin-top: 20px;
+      .progressBar {
+        width: 100%;
+      }
     }
   }
   ${XXS};
