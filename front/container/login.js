@@ -10,6 +10,9 @@ import {
   loginGoogle,
   loginKakao,
   shadowBorder,
+  LoginFormWrapper,
+  LoginFormRow,
+  LoginFormCol,
 } from "../css/Login";
 
 import Link from "next/link";
@@ -25,6 +28,7 @@ import { UPDATE_PASSWORD_REQUEST } from "../reducers/user";
 import Router from "next/router";
 import AppTutorial from "../components/TutorialMain";
 import CryptoJS from "crypto-js/sha256";
+import { makeGridSize } from "../css/responsive/_respondTo";
 
 const { Text } = Typography;
 
@@ -224,11 +228,18 @@ const login = () => {
     setNewPassword(e.target.value);
   };
 
+  const gridSize = {
+    first: makeGridSize(3, 6, 9, 9),
+    second: makeGridSize(18, 12, 6, 6),
+    third: makeGridSize(3, 6, 9, 9),
+  };
+
+  //TODO
   return (
     <>
-      <Row style={layoutCenter}>
-        <Col span={9}></Col>
-        <Col span={6} style={shadowBorder}>
+      <LoginFormRow>
+        <Col {...gridSize.first}></Col>
+        <LoginFormCol {...gridSize.second} range="10px 10px 5px grey">
           <Col span={24} style={{ textAlign: "center", marginBottom: 5 }}>
             <img src={logoImg} width="25%" />
           </Col>
@@ -332,9 +343,9 @@ const login = () => {
               <strong style={{ fontSize: "1vw" }}>비밀번호 찾기</strong>
             </Button>
           </div>
-        </Col>
-        <Col span={9}></Col>
-      </Row>
+        </LoginFormCol>
+        <Col {...gridSize.third}></Col>
+      </LoginFormRow>
       <AppTutorial
         next={next}
         current={current}

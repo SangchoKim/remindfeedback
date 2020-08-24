@@ -1,3 +1,7 @@
+import styled from "styled-components";
+import { Layout, Row } from "antd";
+import { respondTo } from "../css/responsive/_respondTo";
+
 const layout = {
   background: "white",
   height: "100vh",
