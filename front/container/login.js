@@ -234,63 +234,59 @@ const login = () => {
     third: makeGridSize(3, 6, 9, 9),
   };
 
-  //TODO
   return (
     <>
       <LoginFormRow>
         <Col {...gridSize.first}></Col>
         <LoginFormCol {...gridSize.second} range="10px 10px 5px grey">
-          <Col span={24} style={{ textAlign: "center", marginBottom: 5 }}>
-            <img src={logoImg} width="25%" />
-          </Col>
-          <Col span={24} style={{ textAlign: "center", marginBottom: 5 }}>
+          <Col>
+            <img src={logoImg} />
             <Text style={fontSize} style={fontSize}>
               <strong>RemindFeedback</strong>
             </Text>
           </Col>
           <Form onSubmit={_onsubmit} className="login-form">
-            <label htmlFor="user-email" style={fontSize}>
-              <strong>이메일</strong>
-            </label>
-            <Form.Item>
-              <Input
-                prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
-                placeholder="Email"
-                value={email}
-                onChange={handleEmail}
-                required
-              />
-            </Form.Item>
-            <label htmlFor="user-password" style={fontSize}>
-              <strong>비밀번호</strong>
-            </label>
-            <Form.Item>
-              <Input
-                prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={handlePassword}
-                required
-              />
-            </Form.Item>
-            {/* <Form.Item>
-                            <Checkbox><strong>Remember me</strong></Checkbox>
-                       </Form.Item> */}
-            <Form.Item style={{ textAlign: "center" }}>
-              <Col span={24}>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  size="large"
-                  className="login-form-button"
-                  style={loginBtn}
-                  loading={isLoggingIn}
-                >
-                  <strong>로그인</strong>
-                </Button>
-              </Col>
-            </Form.Item>
+            <Col>
+              <label htmlFor="user-email" style={fontSize}>
+                <strong>이메일</strong>
+              </label>
+              <Form.Item>
+                <Input
+                  prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
+                  placeholder="Email"
+                  value={email}
+                  onChange={handleEmail}
+                  required
+                />
+              </Form.Item>
+            </Col>
+            <Col>
+              <label htmlFor="user-password" style={fontSize}>
+                <strong>비밀번호</strong>
+              </label>
+              <Form.Item>
+                <Input
+                  prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={handlePassword}
+                  required
+                />
+              </Form.Item>
+            </Col>
+            <Col>
+              <Button
+                type="primary"
+                htmlType="submit"
+                size="large"
+                className="login-form-button"
+                style={loginBtn}
+                loading={isLoggingIn}
+              >
+                <strong>로그인</strong>
+              </Button>
+            </Col>
             <hr />
             {/* <Form.Item style={{textAlign:'center'}}>
                             <Col span={24}>
@@ -315,8 +311,8 @@ const login = () => {
                             </Col>
                        </Form.Item> */}
           </Form>
-          <div>
-            <Text style={{ fontSize: "1vw" }}>계정이 없으신가요?</Text>
+          <Col>
+            <Text>계정이 없으신가요?</Text>
             <Button
               type="ghost"
               style={{
@@ -326,11 +322,9 @@ const login = () => {
               }}
               onClick={handleSignUp}
             >
-              <strong style={{ fontSize: "1vw" }}>시작하기</strong>
+              <strong>시작하기</strong>
             </Button>
-          </div>
-          <div>
-            <span style={{ fontSize: "1vw" }}>비밀번호를 잊으셨나요?</span>
+            <span>비밀번호를 잊으셨나요?</span>
             <Button
               type="ghost"
               style={{
@@ -340,9 +334,9 @@ const login = () => {
               }}
               onClick={handleFindPw}
             >
-              <strong style={{ fontSize: "1vw" }}>비밀번호 찾기</strong>
+              <strong>비밀번호 찾기</strong>
             </Button>
-          </div>
+          </Col>
         </LoginFormCol>
         <Col {...gridSize.third}></Col>
       </LoginFormRow>

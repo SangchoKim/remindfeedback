@@ -27,6 +27,51 @@ export const LoginFormCol = styled(Col)`
   box-shadow: ${(props) => props.range};
   border: 1px solid;
   padding: 1vw;
+  border-radius: 20px;
+  display: grid;
+  grid-template-rows: 0.5fr 1fr 0.5fr;
+
+  & > div:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 25%;
+    }
+    span {
+      margin-top: 5px;
+      font-size: 1.5vw;
+      color: ${colors["color-gray-800"]};
+    }
+  }
+  & > form:nth-child(2) {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    & > div:nth-child(3) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  & > div:last-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    span {
+      font-size: 1vw;
+      padding: 12px 0px;
+      strong {
+        font-size: 1vw;
+      }
+    }
+    button {
+      border-color: white;
+      border-width: 0px;
+      background-color: white;
+    }
+  }
 `;
 
 const loginBtn = {
