@@ -2,35 +2,9 @@ import styled from "styled-components";
 import { Layout, Row, Col } from "antd";
 import { respondTo } from "../css/responsive/_respondTo";
 import { default as colors } from "../css/theme/color.json";
+import { CommonShadowBox } from "./Common";
 
-export const BackgroundWrapper = styled(Layout)`
-  background-image: url("https://source.unsplash.com/random/2");
-  height: 100vh;
-  width: auto;
-  background-size: cover;
-  background-position: center;
-  opacity: 1;
-`;
-
-export const LoginFormRow = styled(Row)`
-  height: 100vh;
-  width: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-`;
-
-export const LoginFormCol = styled(Col)`
-  background-color: ${colors["color-success-300"]};
-  opacity: 0.8;
-  box-shadow: ${(props) => props.range};
-  border: 1px solid;
-  padding: 1vw;
-  border-radius: 20px;
-  display: grid;
-  grid-template-rows: 0.5fr 1fr 0.5fr;
-
+export const LoginFormCol = styled(CommonShadowBox)`
   & > div:first-child {
     display: flex;
     flex-direction: column;
@@ -86,7 +60,6 @@ export const LoginFormCol = styled(Col)`
   }
 `;
 
-const loginBtn = {};
 const loginKakao = {
   boxShadow: "0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)",
   width: "100%",
@@ -116,11 +89,4 @@ const shadowBorder = {
   marginTop: "2.5%",
 };
 
-export {
-  loginBtn,
-  loginKakao,
-  loginApple,
-  loginGoogle,
-  loginFacebook,
-  shadowBorder,
-};
+export { loginKakao, loginApple, loginGoogle, loginFacebook, shadowBorder };

@@ -11,8 +11,8 @@ import {
   Typography,
   Alert,
 } from "antd";
-import { layoutCenter } from "../css/Common";
-import { signUpBtn, shadowBorder } from "../css/Signup";
+import { layoutCenter, LoginFormRow } from "../css/Common";
+import { signUpBtn, shadowBorder, SignUpFormCol } from "../css/Signup";
 import Router from "next/router";
 import Link from "next/link";
 import { SIGN_UP_REQUEST } from "../reducers/user";
@@ -21,6 +21,7 @@ import { CHECK_EMAIL_REQUEST } from "../reducers/user";
 import CryptoJS from "crypto-js/sha256";
 import Term from "../components/Term";
 import { FirstTerm, SecondTerm } from "../constant/Term";
+import { makeGridSize } from "../css/responsive/_respondTo";
 
 const { Title, Text } = Typography;
 
@@ -103,56 +104,32 @@ const signup = () => {
   };
 
   const emailForm = (
-    <div style={{ padding: 5 }}>
-      <label htmlFor="user-email" style={{ fontWeight: "bold" }}>
-        이메일
-      </label>
-      <div style={{ display: "flex", flexDirection: "row" }}>
-        <div
-          style={{
-            marginTop: 5,
-            width: "80%",
-          }}
-        >
-          <Input
-            type="text"
-            name="email"
-            value={email}
-            onChange={onChangeSetEmail}
-            suffix={<Icon type="smile" style={{ color: "rgba(0,0,0,.25)" }} />}
-            placeholder="이메일을 기입해주세요"
-            required
-          />
-        </div>
-        <div
-          style={{
-            marginTop: 5,
-            marginLeft: "2%",
-          }}
-        >
-          <Button
-            onClick={handleAuthEmail}
-            type="dashed"
-            style={{
-              borderRadius: 15,
-              backgroundColor: "red",
-              fontWeight: "bold",
-              color: "#FFFFFF",
-            }}
-          >
-            이메일 인증
-          </Button>
-        </div>
+    <div>
+      <label htmlFor="user-email">이메일</label>
+      <div>
+        {/* 인풋 공통으로 빼기 */}
+        <Input
+          type="text"
+          name="email"
+          value={email}
+          onChange={onChangeSetEmail}
+          suffix={<Icon type="smile" style={{ color: "rgba(0,0,0,.25)" }} />}
+          placeholder="이메일을 기입해주세요"
+          required
+        />
+
+        {/* 버튼 공통으로 뺴기 */}
+        <Button onClick={handleAuthEmail} type="dashed">
+          이메일 인증
+        </Button>
       </div>
     </div>
   );
 
   const TokenInput = (
-    <div style={{ padding: 5 }}>
-      <label htmlFor="user-nickname" style={{ fontWeight: "bold" }}>
-        인증코드
-      </label>
-      <div style={{ marginTop: 5 }}>
+    <div>
+      <label htmlFor="user-nickname">인증코드</label>
+      <div>
         <Input
           type="text"
           name="tokenNum"
@@ -165,11 +142,9 @@ const signup = () => {
     </div>
   );
   const nicknameForm = (
-    <div style={{ padding: 5 }}>
-      <label htmlFor="user-nickname" style={{ fontWeight: "bold" }}>
-        닉네임
-      </label>
-      <div style={{ marginTop: 5 }}>
+    <div>
+      <label htmlFor="user-nickname">닉네임</label>
+      <div>
         <Input
           type="text"
           name="nickname"
@@ -183,11 +158,9 @@ const signup = () => {
     </div>
   );
   const passwordForm = (
-    <div style={{ padding: 5 }}>
-      <label htmlFor="user-password" style={{ fontWeight: "bold" }}>
-        비밀번호
-      </label>
-      <div style={{ marginTop: 5 }}>
+    <div>
+      <label htmlFor="user-password">비밀번호</label>
+      <div>
         <Input
           type="password"
           name="password"
@@ -202,11 +175,9 @@ const signup = () => {
   );
 
   const re_passwordForm = (
-    <div style={{ padding: 5 }}>
-      <label htmlFor="user-re_password" style={{ fontWeight: "bold" }}>
-        비밀번호 재입력
-      </label>
-      <div style={{ marginTop: 5 }}>
+    <div>
+      <label htmlFor="user-re_password">비밀번호 재입력</label>
+      <div>
         <Input
           type="password"
           name="re_password"
@@ -324,119 +295,125 @@ const signup = () => {
     [email, password, nickname, firstTerm, re_password, token, secondTerm]
   );
 
+  const gridSize = {
+    first: makeGridSize(2, 4, 6, 8),
+    second: makeGridSize(20, 16, 12, 10),
+    third: makeGridSize(2, 4, 6, 8),
+  };
+
   return (
-    <>
-      <Row style={layoutCenter}>
-        <Col span={8}></Col>
-        <Col span={8} style={shadowBorder}>
-          <div style={{ textAlign: "center" }}>
-            <Title>회원가입</Title>
-          </div>
-          <div style={{ textAlign: "center" }}>
-            <Text type="danger" style={{ fontWeight: "bold" }}>
-              Remind Feedback
-            </Text>
+    <LoginFormRow>
+      <Col {...gridSize.first}></Col>
+      <SignUpFormCol
+        {...gridSize.second}
+        range="10px 10px 5px grey"
+        grid_templeate_row="0.1fr 1.5fr 0.1fr"
+      >
+        <Col>
+          <Title>회원가입</Title>
+          <Col>
+            <Text className="test-bold">Remind Feedback</Text>
             <Text>
               에 오신 것을 환영합니다. <br /> 회원가입을 통해 서비스를 이용하실
               수 있습니다.
             </Text>
-          </div>
-          <Form onSubmit={_onSubmit} className="signUp-form">
-            {emailForm}
-            {TokenInput}
-            {nicknameForm}
-            {passwordForm}
-            {re_passwordForm}
-            <Col
-              span={24}
-              style={{
-                marginTop: 15,
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "",
-              }}
-            >
-              <Checkbox
-                checked={firstTerm}
-                style={{ fontWeight: "bold", flexGrow: 1 }}
-                onChange={onChangeFirstTerm}
-              >
-                서비스 이용약관 동의(필수)
-              </Checkbox>
-              <Button
-                type="dashed"
-                onClick={showDrawer.bind(this, 1)}
-                style={{
-                  fontWeight: "bold",
-                }}
-              >
-                자세히보기 <Icon type="right" />
-              </Button>
-            </Col>
-            <Col
-              span={24}
-              style={{
-                marginTop: 15,
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "",
-              }}
-            >
-              <Checkbox
-                checked={secondTerm}
-                style={{ fontWeight: "bold", flexGrow: 1 }}
-                onChange={onChangeSecondTerm}
-              >
-                개인 정보 수집 및 이용 동의(필수)
-              </Checkbox>
-              <Button
-                type="dashed"
-                onClick={showDrawer.bind(this, 2)}
-                style={{
-                  fontWeight: "bold",
-                }}
-              >
-                자세히보기 <Icon type="right" />
-              </Button>
-            </Col>
-            <Col span={24} style={{ marginTop: 15 }}>
-              <Button
-                size="large"
-                htmlType="submit"
-                className="signup-form-button"
-                style={signUpBtn}
-                loading={isSigningUp}
-              >
-                회원가입
-              </Button>
-            </Col>
-          </Form>
-          <Col span={24} style={{ marginTop: 15, textAlign: "center" }}>
-            <span>계정을 이미 가지고 있으신가요? </span>
-            <Link href="/login">
-              <a>
-                <strong>로그인</strong>
-              </a>
-            </Link>
           </Col>
         </Col>
-        <Col span={8}></Col>
-        <Term
-          onClose={onClose}
-          drawer={drawer}
-          title={title}
-          description={
-            description === 1 ? (
-              <FirstTerm handleFirstTerm={onClose.bind(this, "firstChecked")} />
-            ) : (
-              <SecondTerm
-                handleSeocndTerm={onClose.bind(this, "secondChecked")}
-              />
-            )
-          }
-        />
-      </Row>
-    </>
+        <Form onSubmit={_onSubmit} className="signUp-form">
+          {emailForm}
+          {TokenInput}
+          {nicknameForm}
+          {passwordForm}
+          {re_passwordForm}
+          <Col
+            span={24}
+            style={{
+              marginTop: 15,
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "",
+            }}
+          >
+            <Checkbox
+              checked={firstTerm}
+              style={{ fontWeight: "bold", flexGrow: 1 }}
+              onChange={onChangeFirstTerm}
+            >
+              서비스 이용약관 동의(필수)
+            </Checkbox>
+            <Button
+              type="dashed"
+              onClick={showDrawer.bind(this, 1)}
+              style={{
+                fontWeight: "bold",
+              }}
+            >
+              자세히보기 <Icon type="right" />
+            </Button>
+          </Col>
+          <Col
+            span={24}
+            style={{
+              marginTop: 15,
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "",
+            }}
+          >
+            <Checkbox
+              checked={secondTerm}
+              style={{ fontWeight: "bold", flexGrow: 1 }}
+              onChange={onChangeSecondTerm}
+            >
+              개인 정보 수집 및 이용 동의(필수)
+            </Checkbox>
+            <Button
+              type="dashed"
+              onClick={showDrawer.bind(this, 2)}
+              style={{
+                fontWeight: "bold",
+              }}
+            >
+              자세히보기 <Icon type="right" />
+            </Button>
+          </Col>
+          <Col span={24} style={{ marginTop: 15 }}>
+            <Button
+              size="large"
+              htmlType="submit"
+              className="signup-form-button"
+              style={signUpBtn}
+              loading={isSigningUp}
+            >
+              회원가입
+            </Button>
+          </Col>
+        </Form>
+        <Col span={24} style={{ marginTop: 15, textAlign: "center" }}>
+          <span>계정을 이미 가지고 있으신가요? </span>
+          <Link href="/login">
+            <a>
+              <strong>로그인</strong>
+            </a>
+          </Link>
+        </Col>
+      </SignUpFormCol>
+      <Col {...gridSize.third}></Col>
+      <Term
+        onClose={onClose}
+        drawer={drawer}
+        title={title}
+        description={
+          description === 1 ? (
+            <FirstTerm handleFirstTerm={onClose.bind(this, "firstChecked")} />
+          ) : (
+            <SecondTerm
+              handleSeocndTerm={onClose.bind(this, "secondChecked")}
+            />
+          )
+        }
+      />
+    </LoginFormRow>
   );
 };
 

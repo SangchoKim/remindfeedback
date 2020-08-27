@@ -3,7 +3,7 @@ import { Layout } from "antd";
 import AppFooter from "../components/AppFooter";
 import AppLogin from "../container/login";
 import { layout } from "../css/Common";
-import { BackgroundWrapper } from "../css/Login";
+import { BackgroundWrapper } from "../css/Common";
 
 const login = () => {
   return (

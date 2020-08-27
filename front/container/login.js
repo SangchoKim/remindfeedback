@@ -1,19 +1,9 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Form, Input, Button, Checkbox, Typography } from "antd";
-import { layoutCenter, fontSize } from "../css/Common";
-import {
-  loginBtn,
-  loginApple,
-  loginFacebook,
-  loginGoogle,
-  loginKakao,
-  shadowBorder,
-  LoginFormWrapper,
-  LoginFormRow,
-  LoginFormCol,
-} from "../css/Login";
+import { Col, Form, Input, Button, Typography } from "antd";
+import { LoginFormRow } from "../css/Common";
+import { LoginFormCol } from "../css/Login";
 
 import Link from "next/link";
 import logoImg from "../img/logo1.png";
@@ -243,10 +233,14 @@ const login = () => {
     <>
       <LoginFormRow>
         <Col {...gridSize.first}></Col>
-        <LoginFormCol {...gridSize.second} range="10px 10px 5px grey">
+        <LoginFormCol
+          {...gridSize.second}
+          range="10px 10px 5px grey"
+          grid_templeate_row="0.5fr 1fr 0.5fr"
+        >
           <Col>
             <img src={logoImg} />
-            <Text style={fontSize} style={fontSize}>
+            <Text>
               <strong>RemindFeedback</strong>
             </Text>
           </Col>
