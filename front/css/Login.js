@@ -45,14 +45,29 @@ export const LoginFormCol = styled(Col)`
       color: ${colors["color-gray-800"]};
     }
   }
+  & div label {
+    font-size: 1.5vw;
+    color: #000;
+  }
   & > form:nth-child(2) {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
+
     & > div:nth-child(3) {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      button {
+        box-shadow: ${(props) => props.range};
+        width: 100%;
+        background-color: #0b4e92;
+        font-size: 1.5vw;
+      }
+      button:hover {
+        color: ${colors["color-danger-900"]};
+        cursor: pointer;
+      }
     }
   }
   & > div:last-child {
@@ -60,13 +75,10 @@ export const LoginFormCol = styled(Col)`
     flex-direction: column;
     justify-content: center;
     span {
-      font-size: 1vw;
       padding: 12px 0px;
-      strong {
-        font-size: 1vw;
-      }
     }
     button {
+      box-shadow: ${(props) => props.range};
       border-color: white;
       border-width: 0px;
       background-color: white;
@@ -74,12 +86,7 @@ export const LoginFormCol = styled(Col)`
   }
 `;
 
-const loginBtn = {
-  boxShadow: "0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)",
-  width: "100%",
-  backgroundColor: "#0B4E92",
-  fontSize: "1.5vw",
-};
+const loginBtn = {};
 const loginKakao = {
   boxShadow: "0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)",
   width: "100%",

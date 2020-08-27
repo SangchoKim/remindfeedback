@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Form, Input, Button, Checkbox, Typography } from "antd";
@@ -34,6 +34,7 @@ const { Text } = Typography;
 
 const login = () => {
   const dispatch = useDispatch();
+  const emailInput = useRef();
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -104,6 +105,10 @@ const login = () => {
       });
     }
   }, [isLoggedIn && isLoggedIn]);
+
+  useEffect(() => {
+    emailInput.current.focus();
+  }, []);
 
   useEffect(() => {
     if (isLoadedFeedback && isLoadedSubject) {
@@ -247,11 +252,12 @@ const login = () => {
           </Col>
           <Form onSubmit={_onsubmit} className="login-form">
             <Col>
-              <label htmlFor="user-email" style={fontSize}>
+              <label htmlFor="user-email">
                 <strong>이메일</strong>
               </label>
               <Form.Item>
                 <Input
+                  ref={emailInput}
                   prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
                   placeholder="Email"
                   value={email}
@@ -261,7 +267,7 @@ const login = () => {
               </Form.Item>
             </Col>
             <Col>
-              <label htmlFor="user-password" style={fontSize}>
+              <label htmlFor="user-password">
                 <strong>비밀번호</strong>
               </label>
               <Form.Item>
@@ -281,7 +287,6 @@ const login = () => {
                 htmlType="submit"
                 size="large"
                 className="login-form-button"
-                style={loginBtn}
                 loading={isLoggingIn}
               >
                 <strong>로그인</strong>
@@ -313,27 +318,11 @@ const login = () => {
           </Form>
           <Col>
             <Text>계정이 없으신가요?</Text>
-            <Button
-              type="ghost"
-              style={{
-                border: "tranparent",
-                borderWidth: 0,
-                backgroundColor: "white",
-              }}
-              onClick={handleSignUp}
-            >
+            <Button type="ghost" onClick={handleSignUp}>
               <strong>시작하기</strong>
             </Button>
             <span>비밀번호를 잊으셨나요?</span>
-            <Button
-              type="ghost"
-              style={{
-                border: "tranparent",
-                borderWidth: 0,
-                backgroundColor: "white",
-              }}
-              onClick={handleFindPw}
-            >
+            <Button type="ghost" onClick={handleFindPw}>
               <strong>비밀번호 찾기</strong>
             </Button>
           </Col>
