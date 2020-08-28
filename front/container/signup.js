@@ -119,11 +119,13 @@ const signup = () => {
           required
         />
 
-        {/* 버튼 공통으로 뺴기 */}
-
-        <Button onClick={handleAuthEmail} type="dashed">
-          이메일 인증
-        </Button>
+        <CustomButton
+          onClick={handleAuthEmail}
+          size="small"
+          bolderStyle="dashed"
+        >
+          이메일인증
+        </CustomButton>
       </div>
     </div>
   );
@@ -399,10 +401,6 @@ const signup = () => {
             </a>
           </Link>
         </Col>
-
-        <CustomButton color="blueviolet" outline>
-          Test
-        </CustomButton>
       </SignUpFormCol>
       <Col {...gridSize.third}></Col>
       <Term

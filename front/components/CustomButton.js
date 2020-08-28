@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { darken, lighten } from "polished";
+import { darken, lighten, borderStyle } from "polished";
 
 const colorStyles = css`
   ${({ theme, color, outline }) => {
@@ -29,23 +29,38 @@ const colorStyles = css`
 
 const sizes = {
   large: {
+    width: "50%",
     height: "3rem",
     fontSize: "1.25rem",
   },
   medium: {
+    width: "40%",
     height: "2.25rem",
     fontSize: "1rem",
   },
   small: {
+    width: "30%",
     height: "1.75rem",
-    fontSize: "0.875rem",
+    fontSize: "0.75rem",
+  },
+  tiny: {
+    width: "20%",
+    height: "1rem",
+    fontSize: "0.5rem",
   },
 };
 
 const sizeStyles = css`
   ${({ size }) => css`
     height: ${sizes[size].height};
+    width: ${sizes[size].width};
     font-size: ${sizes[size].fontSize};
+  `}
+`;
+
+const borderStyles = css`
+  ${({ bolderStyle }) => css`
+    border-style: ${bolderStyle};
   `}
 `;
 
@@ -68,10 +83,14 @@ const StyledButton = styled.button`
   border: none;
   border-radius: 4px;
   color: white;
-  font-weight: bold;
+ 
   cursor: pointer;
   padding-left: 1rem;
   padding-right: 1rem;
+
+  & + & {
+    margin-left: 0.5rem;
+  }
 
   /* 크기 */
 ${sizeStyles}
@@ -82,6 +101,8 @@ ${colorStyles}
   /*  */
 ${fullWidthStyle}
 
+${borderStyles}
+
 `;
 const CustomButton = ({
   children,
@@ -89,6 +110,7 @@ const CustomButton = ({
   size,
   outline,
   fullWidth,
+  bolderStyle,
   onClick,
 
   ...rest
@@ -99,6 +121,7 @@ const CustomButton = ({
       size={size}
       outline={outline}
       fullWidth={fullWidth}
+      bolderStyle={bolderStyle}
       onClick={onClick}
       {...rest}
     >
@@ -110,6 +133,7 @@ const CustomButton = ({
 CustomButton.defaultProps = {
   color: "blue",
   size: "medium",
+  bolderStyle: "none",
 };
 
 export default CustomButton;
