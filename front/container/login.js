@@ -19,6 +19,7 @@ import Router from "next/router";
 import AppTutorial from "../components/TutorialMain";
 import CryptoJS from "crypto-js/sha256";
 import { makeGridSize } from "../css/responsive/_respondTo";
+import CustomButton from "../components/CustomButton";
 
 const { Text } = Typography;
 

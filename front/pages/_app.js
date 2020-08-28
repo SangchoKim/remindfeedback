@@ -13,17 +13,22 @@ import AppHeader from "../components/AppHeader";
 import { FEEDBACK_SUB_READ_REQUEST } from "../reducers/feedbackSubject";
 import { FEEDBACK_READ_REQUEST } from "../reducers/feedback";
 import GlobalStyle from "../css/Index";
-
+import { ThemeProvider } from "styled-components";
+import { default as colors } from "../css/theme/colors.json";
 const RemindFeedback = ({ Component, store, pageProps }) => {
   return (
     <>
-      {/* <Container> */}
       <Provider store={store}>
-        <GlobalStyle />
-        <AppHeader />
-        <Component {...pageProps} />
+        <ThemeProvider
+          theme={{
+            palette: colors,
+          }}
+        >
+          <GlobalStyle />
+          <AppHeader />
+          <Component {...pageProps} />
+        </ThemeProvider>
       </Provider>
-      {/* </Container> */}
     </>
   );
 };

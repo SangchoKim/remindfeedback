@@ -22,6 +22,7 @@ import CryptoJS from "crypto-js/sha256";
 import Term from "../components/Term";
 import { FirstTerm, SecondTerm } from "../constant/Term";
 import { makeGridSize } from "../css/responsive/_respondTo";
+import CustomButton from "../components/CustomButton";
 
 const { Title, Text } = Typography;
 
@@ -119,6 +120,7 @@ const signup = () => {
         />
 
         {/* 버튼 공통으로 뺴기 */}
+
         <Button onClick={handleAuthEmail} type="dashed">
           이메일 인증
         </Button>
@@ -397,6 +399,10 @@ const signup = () => {
             </a>
           </Link>
         </Col>
+
+        <CustomButton color="blueviolet" outline>
+          Test
+        </CustomButton>
       </SignUpFormCol>
       <Col {...gridSize.third}></Col>
       <Term

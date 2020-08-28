@@ -8,10 +8,10 @@ import {
   backgroundLightBlue,
   BackgroundWrapper,
 } from "../css/Common";
-const { Footer, Content, Header } = Layout;
 
 const signup = () => {
   return (
+    // 공통 레이아웃 만들기
     <BackgroundWrapper>
       <AppSignUp />
     </BackgroundWrapper>
