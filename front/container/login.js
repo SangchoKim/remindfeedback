@@ -245,7 +245,7 @@ const login = () => {
               <strong>RemindFeedback</strong>
             </Text>
           </Col>
-          <Form onSubmit={_onsubmit} className="login-form">
+          <Form className="login-form">
             <Col>
               <label htmlFor="user-email">
                 <strong>이메일</strong>
@@ -277,15 +277,19 @@ const login = () => {
               </Form.Item>
             </Col>
             <Col>
-              <Button
-                type="primary"
+              <CustomButton
+                fullWidth
+                color="dodgerblue"
                 htmlType="submit"
-                size="large"
+                size="medium"
                 className="login-form-button"
                 loading={isLoggingIn}
+                boxShadow="10px 10px 5px grey"
+                onClick={_onsubmit}
+                textLocation="center"
               >
                 <strong>로그인</strong>
-              </Button>
+              </CustomButton>
             </Col>
             <hr />
             {/* <Form.Item style={{textAlign:'center'}}>
@@ -313,13 +317,28 @@ const login = () => {
           </Form>
           <Col>
             <Text>계정이 없으신가요?</Text>
-            <Button type="ghost" onClick={handleSignUp}>
+            <CustomButton
+              fullWidth
+              color="white"
+              size="medium"
+              boxShadow="10px 10px 5px grey"
+              onClick={handleSignUp}
+              textLocation="center"
+            >
               <strong>시작하기</strong>
-            </Button>
+            </CustomButton>
+
             <span>비밀번호를 잊으셨나요?</span>
-            <Button type="ghost" onClick={handleFindPw}>
+            <CustomButton
+              fullWidth
+              color="white"
+              size="medium"
+              boxShadow="10px 10px 5px grey"
+              onClick={handleSignUp}
+              textLocation="center"
+            >
               <strong>비밀번호 찾기</strong>
-            </Button>
+            </CustomButton>
           </Col>
         </LoginFormCol>
         <Col {...gridSize.third}></Col>

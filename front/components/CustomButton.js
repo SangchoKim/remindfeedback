@@ -1,12 +1,15 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import { darken, lighten, borderStyle } from "polished";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const colorStyles = css`
   ${({ theme, color, outline }) => {
     const selected = theme.palette[color];
+    const BLACK = "black";
     return css`
       background: ${selected};
+      color: ${color === "white" && BLACK};
       &:hover {
         background: ${lighten(0.1, selected)};
       }
@@ -77,13 +80,39 @@ const fullWidthStyle = css`
     `}
 `;
 
+const boxShadowStyle = css`
+  ${({ boxShadow }) => css`
+    box-shadow: ${boxShadow};
+  `}
+`;
+
+const textLocations = {
+  left: {
+    coulmn: "flex-start",
+    row: "center",
+  },
+  right: {
+    coulmn: "flex-end",
+    row: "center",
+  },
+  center: {
+    coulmn: "center",
+    row: "center",
+  },
+};
+
+const textLocationStyle = css`
+  ${({ textLocation }) => css`
+    justify-content: ${textLocations[textLocation].coulmn};
+    align-items: ${textLocations[textLocation].row};
+  `}
+`;
 const StyledButton = styled.button`
   display: inline-flex;
   outline: none;
   border: none;
   border-radius: 4px;
   color: white;
- 
   cursor: pointer;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -101,9 +130,16 @@ ${colorStyles}
   /*  */
 ${fullWidthStyle}
 
+  /* 테두리 스타일 */
 ${borderStyles}
 
+ /* 그림자 스타일 */
+${boxShadowStyle}
+
+ /* 글자 위치 */
+${textLocationStyle}
 `;
+
 const CustomButton = ({
   children,
   color,
@@ -111,21 +147,29 @@ const CustomButton = ({
   outline,
   fullWidth,
   bolderStyle,
+  boxShadow,
+  textLocation,
+  disabled,
+  loading,
   onClick,
-
   ...rest
 }) => {
+  console.log(textLocation);
   return (
     <StyledButton
+      disabled={disabled}
       color={color}
       size={size}
       outline={outline}
       fullWidth={fullWidth}
       bolderStyle={bolderStyle}
+      boxShadow={boxShadow}
+      textLocation={textLocation}
       onClick={onClick}
       {...rest}
     >
       {children}
+      {loading && <LoadingOutlined />}
     </StyledButton>
   );
 };
@@ -134,6 +178,7 @@ CustomButton.defaultProps = {
   color: "blue",
   size: "medium",
   bolderStyle: "none",
+  textLocation: "left",
 };
 
 export default CustomButton;

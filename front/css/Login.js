@@ -15,12 +15,12 @@ export const LoginFormCol = styled(CommonShadowBox)`
     }
     span {
       margin-top: 5px;
-      font-size: 1.5vw;
+      font-size: 1rem;
       color: ${colors["color-gray-800"]};
     }
   }
   & div label {
-    font-size: 1.5vw;
+    font-size: 1rem;
     color: #000;
   }
   & > form:nth-child(2) {
@@ -32,16 +32,6 @@ export const LoginFormCol = styled(CommonShadowBox)`
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      button {
-        box-shadow: ${(props) => props.range};
-        width: 100%;
-        background-color: #0b4e92;
-        font-size: 1.5vw;
-      }
-      button:hover {
-        color: ${colors["color-danger-900"]};
-        cursor: pointer;
-      }
     }
   }
   & > div:last-child {
@@ -50,12 +40,6 @@ export const LoginFormCol = styled(CommonShadowBox)`
     justify-content: center;
     span {
       padding: 12px 0px;
-    }
-    button {
-      box-shadow: ${(props) => props.range};
-      border-color: white;
-      border-width: 0px;
-      background-color: white;
     }
   }
 `;

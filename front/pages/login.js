@@ -4,12 +4,17 @@ import AppFooter from "../components/AppFooter";
 import AppLogin from "../container/login";
 import { layout } from "../css/Common";
 import { BackgroundWrapper } from "../css/Common";
+import CustomLayout from "../components/CustomLayout";
 
 const login = () => {
   return (
-    <BackgroundWrapper>
+    <CustomLayout
+      imageurl='"https://source.unsplash.com/random/2"'
+      imagesize="cover"
+      imageposition="center"
+    >
       <AppLogin />
-    </BackgroundWrapper>
+    </CustomLayout>
   );
 };
 
