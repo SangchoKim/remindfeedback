@@ -154,7 +154,6 @@ const CustomButton = ({
   onClick,
   ...rest
 }) => {
-  console.log(textLocation);
   return (
     <StyledButton
       disabled={disabled}

@@ -5,15 +5,26 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { Layout } from "antd";
 
 const BackGroundStyle = css`
-  ${({ imageurl, imagesize, imageposition,imagerefeat, theme, color, outline }) => {
+  ${({
+    imageurl,
+    imagesize,
+    imageposition,
+    imagerefeat,
+    theme,
+    color,
+    outline,
+    opacity,
+  }) => {
     const selected = theme.palette[color];
     return css`
       background-image: url(${imageurl});
+      background-color: ${selected};
       background-size: ${imagesize};
       background-position: ${imageposition};
-      ${imagerefeat&&
+      opacity: ${opacity};
+      ${imagerefeat &&
         css`
-          background-repeat:repeat;
+          background-repeat: repeat;
         `};
       ${outline &&
         css`
@@ -38,7 +49,11 @@ const CustomLayout = ({ children, ...rest }) => {
 };
 
 CustomLayout.defaultProps = {
-    imagerefeat = 'no-repeat'
+  imagerefeat: "no-repeat",
+  imagesize: "cover",
+  imageposition: "center",
+  opacity: 1,
+  color: "white",
 };
 
 export default CustomLayout;

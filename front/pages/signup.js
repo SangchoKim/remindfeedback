@@ -1,20 +1,14 @@
 import React from "react";
-import { Layout } from "antd";
 import AppFooter from "../components/AppFooter";
 import AppSignUp from "../container/signup";
-import {
-  layout,
-  backgroundWhite,
-  backgroundLightBlue,
-  BackgroundWrapper,
-} from "../css/Common";
+
+import CustomLayout from "../components/CustomLayout";
 
 const signup = () => {
   return (
-    // 공통 레이아웃 만들기
-    <BackgroundWrapper>
+    <CustomLayout imageurl='"https://source.unsplash.com/random/2"'>
       <AppSignUp />
-    </BackgroundWrapper>
+    </CustomLayout>
   );
 };
 

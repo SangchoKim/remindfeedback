@@ -5,7 +5,6 @@ import { default as colors } from "../css/theme/color.json";
 
 const XXS = respondTo.xxs`
 background-color: ${colors["color-danger-transparent-500"]};
-
 `;
 
 const XS = respondTo.xs`
@@ -53,11 +52,11 @@ const WrapperRow = styled(Row)`
       }
     }
   }
-  ${XXS};
+  /* ${XXS};
   ${XS};
   ${SM};
   ${MD};
-  ${LG};
+  ${LG}; */
 `;
 
 export { WrapperRow };

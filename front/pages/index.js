@@ -5,6 +5,7 @@ import { Row, Col, Layout, Typography, Progress } from "antd";
 import logoImg from "../img/logo1.png";
 import Router from "next/router";
 import { makeGridSize } from "../css/responsive/_respondTo";
+import CustomLayout from "../components/CustomLayout";
 const { Content } = Layout;
 const { Text } = Typography;
 
@@ -33,32 +34,30 @@ const Home = () => {
   };
 
   return (
-    <>
-      <Layout style={backgroundWhite}>
-        <WrapperRow>
-          <Col {...gridSize.first}></Col>
-          <Col {...gridSize.second} className="wrapper">
-            <Col span={24}>
-              <img src={logoImg} width="40%" />
-            </Col>
-            <Col span={24}>
-              <Text>
-                <strong>RemindFeedback</strong>
-              </Text>
-            </Col>
-            <Col span={24}>
-              <Progress
-                percent={percent}
-                size="default"
-                status="active"
-                className="progressBar"
-              />
-            </Col>
+    <CustomLayout>
+      <WrapperRow>
+        <Col {...gridSize.first}></Col>
+        <Col {...gridSize.second} className="wrapper">
+          <Col span={24}>
+            <img src={logoImg} width="40%" />
           </Col>
-          <Col {...gridSize.third}></Col>
-        </WrapperRow>
-      </Layout>
-    </>
+          <Col span={24}>
+            <Text>
+              <strong>RemindFeedback</strong>
+            </Text>
+          </Col>
+          <Col span={24}>
+            <Progress
+              percent={percent}
+              size="default"
+              status="active"
+              className="progressBar"
+            />
+          </Col>
+        </Col>
+        <Col {...gridSize.third}></Col>
+      </WrapperRow>
+    </CustomLayout>
   );
 };
 
